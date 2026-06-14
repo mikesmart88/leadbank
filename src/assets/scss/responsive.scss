@@ -1,0 +1,36 @@
+@use './varables.scss' as *;
+
+@media screen and (max-width: 510px) {
+	.form-section{
+        min-height: 100vh;
+        background-color: $white;
+        align-items: flex-start;
+        box-sizing: border-box;
+        overflow: hidden;
+        padding: 10px;
+        width: 100%;
+        position: relative;
+
+        h2{
+            position: absolute;
+            top: 2%;
+        }
+    }
+
+    .login-form{
+        padding: 0px;
+        width: 100%;
+        box-shadow: none;
+        min-width: 0px;
+        padding: 0px 10px;
+    }
+
+    .login-or{
+        white-space: nowrap;
+    }
+    .move-to-create-account{
+        text-align: center;
+        width: 100%;
+    }
+}
+
