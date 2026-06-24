@@ -63,20 +63,7 @@ export default function Footer({ style, className, ...props }) {
           <Link>Help & community</Link>
         </div>
         <div className="linksHolder socials">
-          <span className="foot-social-icon">
-            <Link>
-              <Icon name="IoLogoInstagram" />
-            </Link>
-            <Link>
-              <Icon name="IoLogoTwitter" />
-            </Link>
-            <Link>
-              <Icon name="IoLogoLinkedin" />
-            </Link>
-            <Link>
-              <Icon name="IoLogoFacebook" />
-            </Link>
-          </span>
+          <Link>+1 (509) 1256 178</Link>
           <CustomButton>
             <Icon name="IoLogoWhatsapp" /> Chat on Whatsapp
           </CustomButton>

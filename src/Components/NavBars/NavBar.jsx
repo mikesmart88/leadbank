@@ -6,6 +6,7 @@ import Icon from "../Icons/Icon";
 import { routeConfig } from "../../Routers/routeconfig";
 import { useLocation } from "react-router";
 import CustomNavLinks from "../Links/CustomNavLinks";
+import SideBar from "../SideBars/SideBar";
 
 import icon from '../../assets/images/another-icon.png';
 
@@ -17,6 +18,17 @@ import icon from '../../assets/images/another-icon.png';
 
 export default function NavBar({ style, ...props }) {
   const location = useLocation();
+
+  const [sidebar, setSideBar] = useState(false);
+
+  const handleSideBar = () => {
+    if (sidebar == true) {
+      setSideBar(false)
+    }
+    else{
+      setSideBar(true)
+    }
+  }
 
   const normalizePath = (path) => path.replace(/\/$/, ""); // remove trailing slash
   const currentRoute = routeConfig.find(
@@ -111,9 +123,13 @@ export default function NavBar({ style, ...props }) {
         </div>
         <div className="user-links">
           <Link to="/login/">Login</Link>
-          <Link>Get started for free</Link>
+          <Link to="/signup/country/">Get started for free</Link>
         </div>
+        <CustomButton className="sidebar-menu" onClick={() => handleSideBar()} >
+          {sidebar == true ? <Icon name="IoClose" /> : <Icon name="LuMenu" />}
+        </CustomButton>
       </nav>
+      <SideBar className={`sidebar ${sidebar == true ? "sidebar-open" : ""}`} />
     </header>
   );
 }

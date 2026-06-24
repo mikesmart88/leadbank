@@ -14,7 +14,7 @@ import { useAlert } from "../../contexts/AlertContext";
 import { useLoader } from "../../contexts/LoaderContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
-import { BaseUrl } from "../../../env.config";
+import { MediaUrl } from "../../../env.config";
 
 import icon from "../../assets/images/another-icon.png";
 import { IoLogoWhatsapp } from "react-icons/io";
@@ -53,15 +53,15 @@ export default function DashboardNavbar({ style, className, ...props }) {
         </Link>
 
         <div className="dashboard-links">
-          <Link className="normal-link">
+          <Link className="normal-link whatsapp-chat">
             <IoLogoWhatsapp size={18} style={{ fill: "#06a742" }} />
           </Link>
-          <Link className="normal-link">
+          <Link className="normal-link setting">
             <Icon name="LuSettings" />
           </Link>
           <div className="profile-menu-dropdown">
             {userdata?.avatarUrl ? (
-              <CustomImage source={`${BaseUrl}${userdata?.avatarUrl}`} />
+              <CustomImage source={`${MediaUrl}${userdata?.avatarUrl}`} />
             ) : userdata?.first_name && userdata?.last_name !== "" ? (
               <span className="profile-text">
                 {getInitials(userdata?.first_name, userdata?.last_name)}
@@ -79,7 +79,7 @@ export default function DashboardNavbar({ style, className, ...props }) {
               <aside className="menu-dropdown-box">
                 <div className="profile-card" onClick={() => {navigate("/dashboard/"), setvisible(false)}}>
                   {userdata?.avatarUrl ? (
-                    <CustomImage source={`${BaseUrl}${userdata?.avatarUrl}`} />
+                    <CustomImage source={`${MediaUrl}${userdata?.avatarUrl}`} />
                   ) : userdata?.first_name && userdata?.last_name !== "" ? (
                     <span className="profile-text">
                       {getInitials(userdata?.first_name, userdata?.last_name)}
@@ -101,16 +101,16 @@ export default function DashboardNavbar({ style, className, ...props }) {
                     <Icon name="LuWallet" />
                     My Accounts
                   </Link>
-                  <Link onClick={() => setvisible(false)} className="dropdown-link">
+                  <Link to="/payments/" onClick={() => setvisible(false)} className="dropdown-link">
                     <Icon name="LuBanknote" /> Payments
                   </Link>
-                  <Link onClick={() => setvisible(false)} className="dropdown-link">
+                  <Link to="/transactions/" onClick={() => setvisible(false)} className="dropdown-link">
                     <Icon name="LuActivity" /> Transactions
                   </Link>
-                  <Link onClick={() => setvisible(false)} className="dropdown-link">
+                  <Link to="/card/" onClick={() => setvisible(false)} className="dropdown-link">
                     <Icon name="LuCreditCard" /> Cards
                   </Link>
-                  <Link onClick={() => setvisible(false)} className="dropdown-link">
+                  <Link to="/account/statement/" onClick={() => setvisible(false)} className="dropdown-link">
                     <Icon name="LuFileText" /> Reports & Statements
                   </Link>
                   <Link onClick={() => setvisible(false)} className="dropdown-link">

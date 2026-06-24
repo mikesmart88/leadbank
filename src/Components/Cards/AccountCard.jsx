@@ -42,9 +42,10 @@ export default function AccountCard({
       </span>
       {accountNumber ? (
         <span className="floating-number">
+          <small>Account Number</small>
         {maskNumber(accountNumber)}
       </span>
-      ): {}}
+      ): null}
       <div className="balance-card-show">
         <small>{currencyName}</small>
         <strong>

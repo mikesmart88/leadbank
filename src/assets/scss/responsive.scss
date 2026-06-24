@@ -1,36 +1,998 @@
-@use './varables.scss' as *;
+@use "./varables.scss" as *;
 
-@media screen and (max-width: 510px) {
-	.form-section{
-        min-height: 100vh;
-        background-color: $white;
-        align-items: flex-start;
-        box-sizing: border-box;
-        overflow: hidden;
-        padding: 10px;
+@media screen and (max-width: 1100px) {
+  .nav-link-holder {
+    gap: 30px;
+    width: 70%;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .hero-text {
+    max-width: 80%;
+    margin-top: -60px;
+  }
+
+  .header-section {
+    h2 {
+      font-size: 2.8rem;
+    }
+  }
+
+  .tool-card {
+    padding: 48px;
+    max-height: 450px;
+    min-height: 450px;
+
+    .text-holder {
+      width: 45%;
+
+      p {
         width: 100%;
-        position: relative;
+      }
+    }
+  }
 
-        h2{
-            position: absolute;
-            top: 2%;
-        }
+  .true-account {
+    &::before {
+      height: 150px;
+      top: -3%;
     }
+  }
 
-    .login-form{
-        padding: 0px;
-        width: 100%;
-        box-shadow: none;
-        min-width: 0px;
-        padding: 0px 10px;
+  .true-account-text {
+    padding-left: 0px;
+    h2 {
+      font-size: 4rem;
     }
+    p {
+      width: 90%;
+    }
+  }
 
-    .login-or{
-        white-space: nowrap;
+  .true-account-features-holder {
+    padding: 0px;
+  }
+
+  .animated-pop {
+    width: fit-content;
+    overflow: visible;
+  }
+
+  .image-content {
+    h2 {
+      font-size: 3rem;
     }
-    .move-to-create-account{
-        text-align: center;
-        width: 100%;
+  }
+
+  .review-section {
+    h3 {
+      width: 40%;
     }
+  }
+
+  .review-box-section {
+    padding: 30px;
+
+    &::after {
+      bottom: -20%;
+    }
+  }
+
+  .review-card {
+    .text {
+      p {
+        font-size: 1rem;
+        line-height: 150%;
+      }
+    }
+  }
+
+  .cards {
+    min-height: 600px;
+  }
+
+  .footer-glow {
+    max-height: 55px;
+    h2 {
+      font-size: 5.4rem;
+    }
+  }
+
+  .dashboard-main-content {
+    padding: 24px 50px;
+  }
+
+  .quick-action-link {
+    min-height: 95px;
+  }
+
+  .growth-hub-link {
+    min-height: 90px;
+    box-sizing: border-box;
+  }
+
+  .verification-modal {
+    padding: 30px;
+  }
+
+  .verification-btn {
+    margin-bottom: 10px;
+  }
+
+  .payments-link-section {
+    width: 100%;
+  }
+
+  .signup-image-effect{
+    display: none;
+  }
+
+  .main-form-info{
+    margin-left: 0%;
+  }
 }
 
+@media screen and (max-width: 950px) {
+  .sidebar-menu {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+  .user-links {
+    display: none;
+  }
+
+  .hero-text {
+    padding-left: 10px;
+    max-width: 90%;
+  }
+
+  .globe-img {
+    width: 100%;
+  }
+
+  .payment-gif {
+    width: 100%;
+  }
+
+  .banking-tool-section {
+    .header-section {
+      padding: 20px 10px;
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .cards {
+    padding: 10px 26px;
+    min-height: 500px;
+  }
+
+  .true-account {
+    &::before {
+      height: 120px;
+    }
+  }
+
+  .true-account-text {
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .image-content {
+    padding: 60px 20px;
+    padding-bottom: 20px !important;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  .review-card {
+    .text {
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .top-footer-data {
+    padding: 20px;
+  }
+
+  .address-data {
+    padding: 20px;
+  }
+
+  .copyright {
+    margin: 0px 20px;
+    margin-bottom: 20px;
+  }
+
+  .feature-card {
+    min-height: 300px;
+  }
+
+  .sidebar {
+    display: block;
+  }
+
+  .dashboard-main-content {
+    padding: 24px 15px;
+  }
+
+  .quick-action-link {
+    min-height: 0px;
+
+    div {
+      small {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .growth-hub-link {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .payment-link-holder {
+    flex-wrap: wrap;
+  }
+
+  .payment-card {
+    max-width: calc(100% / 2.3);
+    min-width: calc(100% / 2.3);
+  }
+
+  .send-recieve {
+    .payment-card {
+      max-width: calc(100% / 2.3) !important;
+      min-width: calc(100% / 2.3) !important;
+    }
+  }
+  .card-content {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .card-content {
+    flex-wrap: wrap;
+
+    .card-holder {
+      width: 100%;
+    }
+
+    .card-manager {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .navbar {
+    padding: 20px;
+
+    nav {
+      padding-left: 20px;
+    }
+  }
+
+  .logo {
+    small {
+      display: none;
+    }
+  }
+
+  .hero-text {
+    padding: 0px 10px;
+    max-width: 100% !important;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+
+    p {
+      width: 100%;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .Button {
+      padding: 15px;
+      margin-top: 20px;
+    }
+  }
+
+  .partners {
+    bottom: -50%;
+
+    .img {
+      width: 70px;
+    }
+  }
+
+  .banking-tool-section {
+    .header-section {
+      padding: 15px;
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .cards {
+    min-height: 320px;
+  }
+
+  .tool-card {
+    min-height: 300px;
+    max-height: 300px;
+    padding: 28px;
+    .text-holder {
+      width: 100%;
+    }
+
+    .img {
+      display: none;
+    }
+
+    .text-holder {
+      .icon-holder {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        border-radius: 10px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .true-account {
+    &::before {
+      height: 70px;
+    }
+
+    .true-account-header {
+      .img {
+        display: none;
+      }
+
+      .true-account-text {
+        width: 100%;
+        margin: 70px 0px;
+
+        p {
+          width: 95%;
+        }
+      }
+    }
+  }
+
+  .true-account-features-holder {
+    flex-wrap: wrap;
+  }
+
+  .image-content {
+    padding: 30px 20px;
+
+    .pop-cards {
+      min-width: 360px;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .large-texthead {
+    font-size: 2rem;
+  }
+
+  .review-section {
+    h3 {
+      width: 90%;
+      font-size: 1.2rem;
+    }
+  }
+
+  .review-box-section {
+    width: 95%;
+    padding: 20px;
+
+    &::after {
+      bottom: -30%;
+      display: none;
+    }
+  }
+
+  .review-card {
+    .text {
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .top-footer-data {
+    flex-wrap: wrap;
+  }
+
+  .linksHolder {
+    width: 100%;
+  }
+
+  .address-data {
+    flex-wrap: wrap;
+
+    .company-address {
+      width: 70%;
+    }
+  }
+
+  .footer-glow {
+    max-height: 35px;
+    h2 {
+      font-size: 2.8rem;
+    }
+  }
+
+  .than-banking-section {
+    h3 {
+      margin: 20px 50px;
+    }
+  }
+
+  .dashboard-nav {
+    padding: 0px;
+
+    nav {
+      box-shadow: none;
+      border-radius: none;
+    }
+
+    .dlogo {
+      display: none;
+    }
+  }
+
+  .dashboard-links {
+    width: 100%;
+    justify-content: space-between;
+    // padding-right: 0px;
+
+    .whatsapp-chat {
+      display: none;
+    }
+
+    .setting {
+      position: absolute;
+      right: 20%;
+    }
+  }
+
+  .profile-menu-dropdown {
+    padding: 0px;
+    background-color: transparent;
+    .img {
+      width: 40px;
+      max-height: 40px;
+
+      img {
+        min-height: 40px;
+      }
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  .profile-text {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .dashboard-main-content {
+    padding-top: 100px !important;
+    padding-bottom: 80px !important;
+
+    h2 {
+      font-size: 1.4rem;
+    }
+  }
+
+  .validate-card {
+    flex-wrap: wrap;
+    padding: 16px;
+    gap: 12px;
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 13px;
+      margin-top: 5px !important;
+    }
+
+    .Button {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .total-balance-section {
+    padding: 16px;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    div {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+
+  .balance-show {
+    gap: 5px;
+    strong {
+      font-size: 1.2rem;
+    }
+  }
+
+  .action-button-holder {
+    .Button {
+      width: calc(50% - 20px);
+    }
+
+    .Button:nth-child(3) {
+      max-width: 40px;
+    }
+  }
+
+  .quick-actions {
+    background-color: transparent;
+    padding: 16px;
+    margin-top: 20px;
+    h3,
+    p {
+      display: none;
+    }
+  }
+
+  .quick-action-link {
+    box-shadow: 0px 0px 2px $shadow-color;
+    padding: 10px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: start;
+
+    div {
+      small {
+        display: none;
+      }
+    }
+  }
+
+  .growth-hub-section {
+    padding: 16px;
+
+    h3 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .growth-hub-links-holder {
+    flex-wrap: wrap;
+
+    .growth-hub-link {
+      width: 100%;
+    }
+  }
+
+  .transaction-section {
+    padding: 0px;
+    border: none;
+    border-radius: 0px;
+  }
+
+  .transaction-head {
+    gap: 10px;
+    div {
+      h3 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+
+    a {
+      font-size: 12px;
+      min-width: 100px;
+    }
+  }
+
+  .table-wrapper {
+    width: 100px !important;
+  }
+
+  .transaction-table {
+    width: 700px;
+  }
+
+  .bottom-nav {
+    display: flex !important;
+  }
+
+  .more-section {
+    padding: 16px;
+  }
+
+  .vpage-header {
+    padding: 20px 30px;
+  }
+
+  .goback {
+    padding-left: 0px !important;
+  }
+
+  .verification-modal {
+    padding: 20px !important;
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .single-account-card {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .payments-link-section {
+    padding: 16px;
+  }
+
+  .payment-card {
+    min-width: 80% !important;
+    max-width: 80% !important;
+    min-height: 180px;
+  }
+
+  .send-recieve {
+    .payment-card {
+      min-width: 80% !important;
+      max-width: 80% !important;
+      min-height: 180px;
+    }
+  }
+
+  .change-card-holder {
+    h2 {
+      font-size: 1.2rem;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .close-details {
+    left: calc(90% - 10px);
+    top: 10px;
+    box-shadow: 0px 0px 3px $shadow-color;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .form-section {
+    min-height: 100vh;
+    background-color: $white;
+    align-items: flex-start;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 10px;
+    width: 100%;
+    position: relative;
+
+    h2 {
+      position: absolute;
+      top: 2%;
+    }
+  }
+
+  .login-form {
+    padding: 0px;
+    width: 100%;
+    box-shadow: none;
+    min-width: 0px;
+    padding: 0px 10px;
+  }
+
+  .login-or {
+    white-space: nowrap;
+  }
+  .move-to-create-account {
+    text-align: center;
+    width: 100%;
+  }
+
+  .review-card {
+    flex-wrap: wrap;
+
+    .img,
+    .text {
+      width: 100%;
+    }
+  }
+
+  .hero-text {
+    h1 {
+      font-size: 2.3rem;
+    }
+  }
+
+  .setting {
+    right: 28% !important;
+  }
+
+  .action-button-holder {
+    .Button {
+      font-size: 14px;
+      white-space: nowrap;
+
+      svg {
+        display: none;
+      }
+    }
+
+    .Button:nth-child(3) {
+      svg {
+        display: flex !important;
+      }
+    }
+  }
+
+  .more-section {
+    a {
+      small {
+        font-size: 10px !important;
+        padding: 7px;
+      }
+    }
+  }
+  .vpage-header {
+    padding: 20px !important;
+  }
+
+  .kyc-form {
+    width: 100%;
+    min-width: 100% !important;
+    box-shadow: none;
+    padding: 20px;
+  }
+
+  .kyc-form-holder {
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    h2 {
+      margin-left: 20px !important;
+      margin: 0px;
+      letter-spacing: -2px;
+    }
+  }
+
+  .account-card {
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .card-content-section {
+    padding: 20px;
+  }
+
+  .virtual-card {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .card-overlay {
+    align-items: end;
+  }
+  .card-details-show {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    animation: slidein 0.8s ease forwards;
+
+  }
+
+  .close-details-show {
+    animation: slidein 3s ease reverse forwards;
+  }
+
+  @keyframes slidein {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+
+  .confarmation-btn-holder{
+    flex-wrap: wrap;
+
+    .Button{
+      width: 100%;
+      padding: 15px;
+    }
+  }
+
+  .payment-modal{
+    flex-wrap: wrap;
+    min-height: 100%;
+    border-radius: 0px;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .payment-sidebar{
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+  }
+
+  .payment-content{
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .payment-status{
+    height: 100%;
+    max-height: 100% !important;
+  }
+
+  .signup-layout{
+    padding: 0px;
+
+    .form-section{
+      justify-content: flex-start !important;
+    }
+  }
+
+  .steps-wrapper{
+    min-width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .text-holder {
+    p {
+      line-height: 120% !important;
+      font-size: 15px;
+    }
+  }
+
+  .animated-pop {
+    .pop-cards {
+      font-size: 14px;
+      min-width: 300px;
+    }
+  }
+
+  .setting {
+    right: 32% !important;
+  }
+
+  .quick-actions {
+    padding: 5px;
+  }
+
+  .quick-action-link {
+    div {
+      strong {
+        font-size: 14px;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .vpage-header {
+    .goback {
+      padding-right: 20px !important;
+    }
+  }
+
+  .vlogo {
+    font-size: 1.1rem;
+  }
+
+  .vpage-header .kyc-info strong {
+    font-size: 15px;
+  }
+
+  .verification-modal {
+    h2 {
+      font-size: 1.2rem;
+    }
+    small {
+      font-size: 12px;
+      gap: 5px;
+      white-space: nowrap;
+    }
+  }
+
+  .verification-message {
+    font-size: 12px;
+    line-height: 120%;
+    padding: 15px;
+  }
+
+  .verification-details {
+    margin: 15px 0px;
+
+    h4 {
+      font-size: 14px;
+    }
+  }
+
+  .detail-row {
+    font-size: 11px;
+  }
+
+  .verification-btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .success-icon {
+    font-size: 30px;
+  }
+
+  .payment-card {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    min-height: 180px;
+  }
+
+  .send-recieve {
+    .payment-card {
+      min-width: 100% !important;
+      max-width: 100% !important;
+      min-height: 180px;
+    }
+  }
+
+  .steps-wrapper{
+    padding: 20px 10px !important;
+  }
+}

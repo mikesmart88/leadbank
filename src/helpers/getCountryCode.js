@@ -3,6 +3,18 @@ import en from "i18n-iso-countries/langs/en.json";
 
 countries.registerLocale(en);
 
-export const getCountryCode = (countryName) => {
-  return countries.getAlpha2Code(countryName, "en") || "";
+const specialRegions = {
+  Europe: "EU"
+};
+
+export const getCountryCode = (name) => {
+  const specialRegions = {
+    Europe: "EU"
+  };
+
+  if (specialRegions[name]) {
+    return specialRegions[name];
+  }
+
+  return countries.getAlpha2Code(name, "en") || "";
 };

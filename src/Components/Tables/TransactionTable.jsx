@@ -14,13 +14,15 @@ export default function TransactionTable({
     ...props
 }) {
     return (
-        <table style={style} className={className} {...props}>
+        <section className="table-holder-section" style={{width: "fit-content", minWidth: "100%", overflowX: "scroll"}}>
+            <div className="table-wrapper" style={{width: "100%"}}>
+                <table style={style} className={className} {...props}>
             <thead>
                 <tr>
                 <th>Reference #</th> 
                 <th>Amount</th>
                 <th>source</th>
-                <th>Destination</th>
+                <th>Description</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -29,8 +31,8 @@ export default function TransactionTable({
              {tableData.map((data, index) => (
                 <tr key={index}>
                     <td># {data.id}</td>
-                   <td>{data.currencyIcon}{data.amount.toLocaleString()}</td>
-                   <td>{data.source}</td>
+                   <td>{data.currencySign}{data.amount.toLocaleString()}</td>
+                   <td>{data.type}</td>
                    <td><span className="destination">{data.destination}</span></td>
                    <td className={`status ${data.status}`}>{data.status}</td>
                    <td>
@@ -40,5 +42,7 @@ export default function TransactionTable({
             ))}
            </tbody>
         </table>
+            </div>
+        </section>
     )
 }

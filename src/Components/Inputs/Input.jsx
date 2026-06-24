@@ -24,7 +24,7 @@ export default function Input({ type = "text", error, ...props }) {
           border: "none",
           outline: "none",
           width: "100%",
-          boxSizing: "border-box"
+          boxSizing: "border-box",
         }}
         {...props}
       />

@@ -5,14 +5,19 @@ import CustomButton from "../../../Components/Buttons/CustomButtons";
 import Icon from "../../../Components/Icons/Icon";
 import QuickActionCard from "../../../Components/Cards/QuickActionCard";
 import GrowthHubLink from "../../../Components/Cards/GrowthHubCard";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import TransactionTable from "../../../Components/Tables/TransactionTable";
 import { BaseUrl } from "../../../../env.config";
+import { useLoader } from "../../../contexts/LoaderContext";
+import PaymentChoiceModal from "../../../Components/Cards/PaymentChioceCard";
 
 export default function Dashboard() {
-  const { userdata } = useData();
-
+  const { userdata, useraccount, transactions, supportData } = useData();
+  const { showLoader, hideLoader } = useLoader();
   const user_isValid = userdata?.isVerifiedCompleted == 5;
+  const navigate = useNavigate()
+
+  const [showAdd, setshowAdd] = useState(false)
 
   const quickActions = [
     {
@@ -24,6 +29,7 @@ export default function Dashboard() {
       iconName: "FcSalesPerformance",
       label: "Pay Bills",
       description: "Pay international and local bills.",
+      to: "/payments/"
     },
     {
       iconName: "FcDonate",
@@ -34,13 +40,23 @@ export default function Dashboard() {
       iconName: "FcSimCardChip",
       label: "Virtual Card",
       description: "Get a virtual card for online payments.",
+      to: "/card/"
     },
     {
       iconName: "FcDocument",
       label: "Invioce",
       description: "Create Invioce for Transaction made.",
+      to: "/transactions/"
     },
   ];
+
+  if (!userdata) {
+    return showLoader()
+  }
+
+  const limitedTransaction = transactions.slice(0, 5);
+
+  // console.log(useraccount);
 
   const growthub = [
     {
@@ -59,12 +75,13 @@ export default function Dashboard() {
 
   return (
     <main className="dashboard-main-content">
+      {showAdd && <PaymentChoiceModal onclose={() => setshowAdd(false)} open={true} /> }
       <small>{getFormattedDate()}</small>
       <h2>
         Hello {userdata?.first_name || "john"}{" "}
         {userdata?.last_name || " Micheal"} ❤️
       </h2>
-      {!user_isValid ? (
+      {!user_isValid && (
         <div className="validate-card">
           <div>
             <h3>Let's get your started!</h3>
@@ -73,21 +90,21 @@ export default function Dashboard() {
               amazing work!
             </p>
           </div>
-          <CustomButton>Complete setup</CustomButton>
+          <CustomButton onClick={() => navigate("/account/verification/kyc/")}>Complete setup</CustomButton>
         </div>
-      ) : (
-        ""
       )}
       <section className="total-balance-section">
         <div className="balance-show">
           <small>Total Balance</small>
-          <strong>USD {}</strong>
+          <strong>
+            USD {useraccount.total_balance_usd.toFixed(2).toLocaleString()}
+          </strong>
         </div>
         <div className="action-button-holder">
-          <CustomButton>
+          <CustomButton onClick={() => setshowAdd(true)}>
             <Icon name="IoAdd" /> Add Money
           </CustomButton>
-          <CustomButton>
+          <CustomButton onClick={() => navigate("/dashboard/funds/send/")} >
             <Icon name="LuArrowUpLeft" /> Withdraw Money
           </CustomButton>
           <CustomButton style={{ borderRadius: "50%", padding: "10px" }}>
@@ -109,6 +126,7 @@ export default function Dashboard() {
               iconName={quickAction.iconName}
               label={quickAction.label}
               description={quickAction.description}
+              to={quickAction.to}
             />
           ))}
         </div>
@@ -135,22 +153,23 @@ export default function Dashboard() {
         <div className="transaction-head">
           <div>
             <h3>Checkout your latest transactions</h3>
-        <p>Discover the exciting improvements and transaction you have made in past few days</p>
+            <p>
+              Discover the exciting improvements and transaction you have made
+              in past few days
+            </p>
           </div>
           <Link>
-          View all <Icon name="LuChevronRight" />
+            View all <Icon name="LuChevronRight" />
           </Link>
         </div>
-        <TransactionTable className="transaction-table" tableData={[
-          {
-            id: "1",
-            currencyicon: "$",
-            amount: 1000,
-            source: "Deposite",
-            destination: "To USD account",
-            status: "Pending"
-          }
-        ]} />
+        {limitedTransaction?.length > 0 ? (
+                  <TransactionTable
+                    className="transaction-table"
+                    tableData={limitedTransaction}
+                  />
+                ) : (
+                  <div className="null-table"></div>
+                )}
       </section>
     </main>
   );
