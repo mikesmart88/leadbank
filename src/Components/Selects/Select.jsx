@@ -123,9 +123,9 @@ export default function Select({
               }}
               className="option"
               onPointerDown={(e) => {
-                e.target.style.backgroundColor = "#c2c1c19d",
-                handleChioce(option.value);
+                e.target.style.backgroundColor = "#c2c1c19d"
               }}
+              onClick={() => handleChioce(option.value)}
               onPointerUp={(e) => {
                 e.target.style.backgroundColor = "white";
               }}
