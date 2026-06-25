@@ -10,8 +10,11 @@ import currency_svg from "../../assets/images/exchange.svg";
 import iban_svg from "../../assets/images/iban.svg";
 import p2p_svg from "../../assets/images/p2p2.svg";
 import pay_bill from "../../assets/images/payment.png";
+import { useData } from "../../hooks/UseData";
+
 
 export default function HomePage() {
+
   const cards = [
     {
       title: "Multi-Currency Accounts",

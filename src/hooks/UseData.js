@@ -56,9 +56,6 @@ export const useData = () => {
   const { data: supportdata } = UseFetch(
     `${BaseUrl}/support/`,
     "company support",
-    {
-      headers: AuthHeaders(),
-    },
   );
 
   useEffect(() => {

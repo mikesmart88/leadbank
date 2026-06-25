@@ -2,6 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import * as authService from '../services/AuthServices';
 import { useAlert } from "./AlertContext";
 import api from "../services/Api";
+import { useNavigate } from "react-router";
 
 export const AuthContext = createContext();
 
@@ -9,6 +10,8 @@ export const AuthProvider = ({ children }) => {
     const { showAlert } = useAlert();
     const [User, setUser] = useState(null);
     const [loading, setLoading] = useState(true); // ✅ loading state
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const initAuth = async () => {
@@ -28,6 +31,7 @@ export const AuthProvider = ({ children }) => {
             } catch (err) {
                 authService.logout();
                 setUser(null);
+                navigate("/login/")
             } finally {
                 setLoading(false); // ✅ auth check complete
             }

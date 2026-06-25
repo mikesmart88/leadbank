@@ -4,13 +4,20 @@ import CustomImage from "../Images/CustomImage";
 import CustomButton from "../Buttons/CustomButtons";
 import Icon from "../Icons/Icon";
 import { routeConfig } from "../../Routers/routeconfig";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import CustomNavLinks from "../Links/CustomNavLinks";
 import ReactCountryFlag from "react-country-flag";
+import { useData } from "../../hooks/UseData";
 
 import icon from "../../assets/images/leadbank-icon.png";
 
 export default function Footer({ style, className, ...props }) {
+
+  const { supportData } = useData()
+  const navigate = useNavigate()
+
+  console.log(supportData?.support)
+
   const addresses = [
     {
       location: "United State",
@@ -63,11 +70,11 @@ export default function Footer({ style, className, ...props }) {
           <Link>Help & community</Link>
         </div>
         <div className="linksHolder socials">
-          <Link>+1 (509) 1256 178</Link>
-          <CustomButton>
+          <Link to={`tel:${supportData.support?.supportPhone}`}>{supportData.support?.supportPhone}</Link>
+          <CustomButton onClick={() => navigate(`${supportData.support?.chatLink}`)}>
             <Icon name="IoLogoWhatsapp" /> Chat on Whatsapp
           </CustomButton>
-          <Link>Support@leadbank.co</Link>
+          <Link to={`mailto:${supportData.support?.supportEmail}`}>{supportData.support?.supportEmail}</Link>
         </div>
       </nav>
       <div className="address-data">
