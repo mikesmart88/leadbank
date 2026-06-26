@@ -25,15 +25,25 @@ export const AuthProvider = ({ children }) => {
             }
 
             try {
-                // Validate session with backend
                 const res = await api.get("/check-session/");
-                setUser(res.data.user); // ✅ only set if session is valid
+                setUser(res.data.user);
+
             } catch (err) {
-                authService.logout();
-                setUser(null);
-                navigate("/login/")
+
+                const status = err.response?.status;
+
+                if (status === 401) {
+                    authService.logout();
+                    setUser(null);
+                    navigate("/login/");
+                } else {
+                    console.error(err);
+                    // Keep the user logged in.
+                    // Maybe show a "Couldn't connect to the server" message.
+                }
+
             } finally {
-                setLoading(false); // ✅ auth check complete
+                setLoading(false);
             }
         };
 

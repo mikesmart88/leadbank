@@ -9,27 +9,35 @@ import { Link, useNavigate } from "react-router";
 import TransactionTable from "../../../Components/Tables/TransactionTable";
 import { BaseUrl } from "../../../../env.config";
 import { useLoader } from "../../../contexts/LoaderContext";
+import TransactionPopCard from "../../../Components/Cards/TransactionPopCard";
 import PaymentChoiceModal from "../../../Components/Cards/PaymentChioceCard";
 
 export default function Dashboard() {
   const { userdata, useraccount, transactions, supportData } = useData();
   const { showLoader, hideLoader } = useLoader();
   const user_isValid = userdata?.isVerifiedCompleted == 5;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [showAdd, setshowAdd] = useState(false)
+  const [showAdd, setshowAdd] = useState(false);
+
+  const [showBal, setShowBal] = useState(true);
+
+  const toggleBalanceVisibility = () => {
+    setShowBal((prev) => !prev);
+  };
 
   const quickActions = [
     {
       iconName: "FcMoneyTransfer",
       label: "Transfer",
       description: "Transfer funds to anyone anywhere.",
+      to: "/dashboard/funds/send/",
     },
     {
       iconName: "FcSalesPerformance",
       label: "Pay Bills",
       description: "Pay international and local bills.",
-      to: "/payments/"
+      to: "/payments/",
     },
     {
       iconName: "FcDonate",
@@ -40,18 +48,18 @@ export default function Dashboard() {
       iconName: "FcSimCardChip",
       label: "Virtual Card",
       description: "Get a virtual card for online payments.",
-      to: "/card/"
+      to: "/card/",
     },
     {
       iconName: "FcDocument",
       label: "Invioce",
       description: "Create Invioce for Transaction made.",
-      to: "/transactions/"
+      to: "/transactions/",
     },
   ];
 
   if (!userdata) {
-    return showLoader()
+    return showLoader();
   }
 
   const limitedTransaction = transactions.slice(0, 5);
@@ -75,7 +83,9 @@ export default function Dashboard() {
 
   return (
     <main className="dashboard-main-content">
-      {showAdd && <PaymentChoiceModal onclose={() => setshowAdd(false)} open={true} /> }
+      {showAdd && (
+        <PaymentChoiceModal onclose={() => setshowAdd(false)} open={true} />
+      )}
       <small>{getFormattedDate()}</small>
       <h2>
         Hello {userdata?.first_name || "john"}{" "}
@@ -90,25 +100,37 @@ export default function Dashboard() {
               amazing work!
             </p>
           </div>
-          <CustomButton onClick={() => navigate("/account/verification/kyc/")}>Complete setup</CustomButton>
+          <CustomButton onClick={() => navigate("/account/verification/kyc/")}>
+            Complete setup
+          </CustomButton>
         </div>
       )}
       <section className="total-balance-section">
         <div className="balance-show">
           <small>Total Balance</small>
           <strong>
-            USD {useraccount.total_balance_usd.toFixed(2).toLocaleString()}
+            USD{" "}
+            {showBal
+              ? useraccount.total_balance_usd.toFixed(2).toLocaleString()
+              : "*****"}
           </strong>
         </div>
         <div className="action-button-holder">
           <CustomButton onClick={() => setshowAdd(true)}>
             <Icon name="IoAdd" /> Add Money
           </CustomButton>
-          <CustomButton onClick={() => navigate("/dashboard/funds/send/")} >
+          <CustomButton onClick={() => navigate("/dashboard/funds/send/")}>
             <Icon name="LuArrowUpLeft" /> Withdraw Money
           </CustomButton>
-          <CustomButton style={{ borderRadius: "50%", padding: "10px" }}>
-            <Icon name="IoEyeOutline" />
+          <CustomButton
+            onClick={() => toggleBalanceVisibility()}
+            style={{ borderRadius: "50%", padding: "10px" }}
+          >
+            {showBal ? (
+              <Icon name="IoEyeOffOutline" />
+            ) : (
+              <Icon name="IoEyeOutline" />
+            )}
           </CustomButton>
         </div>
       </section>
@@ -163,13 +185,13 @@ export default function Dashboard() {
           </Link>
         </div>
         {limitedTransaction?.length > 0 ? (
-                  <TransactionTable
-                    className="transaction-table"
-                    tableData={limitedTransaction}
-                  />
-                ) : (
-                  <div className="null-table"></div>
-                )}
+          <TransactionTable
+            className="transaction-table"
+            tableData={limitedTransaction}
+          />
+        ) : (
+          <div className="null-table"></div>
+        )}
       </section>
     </main>
   );

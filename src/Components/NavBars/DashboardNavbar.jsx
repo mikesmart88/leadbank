@@ -26,7 +26,7 @@ import { IoLogoWhatsapp } from "react-icons/io";
  */
 
 export default function DashboardNavbar({ style, className, ...props }) {
-  const { userdata } = useData();
+  const { userdata, supportData } = useData();
   const { logout } = useContext(AuthContext);
   const { showLoader } = useLoader();
   const { showAlert } = useAlert();
@@ -53,10 +53,10 @@ export default function DashboardNavbar({ style, className, ...props }) {
         </Link>
 
         <div className="dashboard-links">
-          <Link className="normal-link whatsapp-chat">
+          <Link to={supportData?.support.chatLink} className="normal-link setting">
             <IoLogoWhatsapp size={18} style={{ fill: "#06a742" }} />
           </Link>
-          <Link className="normal-link setting">
+          <Link className="normal-link whatsapp-chat">
             <Icon name="LuSettings" />
           </Link>
           <div className="profile-menu-dropdown">
