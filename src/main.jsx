@@ -6,6 +6,10 @@ import { AlertProvider } from './contexts/AlertContext.jsx';
 import { LoaderProvider } from './contexts/LoaderContext.jsx';
 import { AuthProvider } from './contexts/AuthContext.jsx';
 import App from './App.jsx'
+import { Buffer } from 'buffer';
+
+globalThis.Buffer = Buffer,
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

@@ -2,8 +2,11 @@ import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
 import CustomImage from "../Images/CustomImage";
+import { useData } from "../../hooks/UseData";
 
 import icon from '../../assets/images/leadbank-icon.png'
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { TransactionReceipt } from "../pdfjsx/TransactionPDF";
 
 /**
  * @param {object} props
@@ -28,6 +31,8 @@ export default function TransactionPopCard({
   ...props
 }) {
   if (!isopen) return null;
+
+  const { userdata } = useData()
 
   return (
     <section className="verification-overlay card-overlay">
@@ -72,9 +77,26 @@ export default function TransactionPopCard({
                 </div>
             </div>
 
-            <CustomButton>
-                Download receipt
-            </CustomButton>
+            <PDFDownloadLink
+              document={<TransactionReceipt transaction={
+                {
+                  status: status,
+                  amount: amount,
+                  currency: currency || "",
+                  created_at: date,
+                  account:  `${userdata?.first_name ?? ""} ${userdata?.last_name ?? ""}`.trim(),
+                  type: type,
+                  narration: description,
+                  reference: id
+                }
+              } />}
+              fileName={`Transaction-${id}.pdf`}
+              className="Button"
+            >
+              {({ loading }) =>
+                loading ? "Generating..." : "Download Receipt"
+              }
+            </PDFDownloadLink>
         </div>
       </div>
     </section>

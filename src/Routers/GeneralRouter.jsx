@@ -29,6 +29,9 @@ import ProtectedRoute from "./ProtectedRoute";
 import OnlyGuestRoute from "./OnlyGuestRoute";
 import KYCRoute from "./KYCRoutes";
 
+import ReceiptPreview from "../Components/pdfjsx/TransactionPDF";
+
+
 export default function GeneralRouter() {
   return (
     <>
@@ -58,16 +61,19 @@ export default function GeneralRouter() {
             <Route path="/account/statement/" element={<AccountStatement />} />
             <Route path="/more/" element={<More />} />
           </Route>
+
           <Route element={<KYCRoute />}>
             <Route
               path="/account/verification/kyc/*"
               element={<KYCVerification />}
             />
           </Route>
+
           <Route path="/card/top-up/*" element={<CardDeposit />} />
           <Route path="/account/create/new/" element={<CreateAccount />} />
           <Route path="/dashboard/funds/send/*" element={<WithdrawFunds />} />
         </Route>
+        <Route path="/pdf/" element={<ReceiptPreview />} />
       </Routes>
     </>
   );

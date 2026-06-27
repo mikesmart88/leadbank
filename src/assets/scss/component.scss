@@ -3548,6 +3548,12 @@ body {
     margin-top: 20px;
     font-size: 14px;
     font-weight: 500;
+    display: flex;
+    box-sizing: border-box;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
   }
 
 }
