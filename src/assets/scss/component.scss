@@ -3663,10 +3663,16 @@ body {
     width: 100%;
     height: fit-content;
     filter: blur(10px);
+   background: $dark-gradient;
   }
 
   .profile-text{
-    font-size: 50px;
+    font-size: 100px !important;
+    width: 100% !important;
+    height: 100%;
+    border-radius: 0px;
+    min-height: 250px !important;
+    filter: blur(5px);
   }
 }
 
@@ -3687,10 +3693,21 @@ body {
   border: 2px solid $white;
   position: absolute;
   top: 0px;
+
   img{
     min-height: 100px;
   }
 
+  }
+
+  .profile-text{
+  width: 100px !important;
+  max-height: 100px;
+  min-height: 100px !important;
+  border: 2px solid $white;
+  position: absolute;
+  top: 0px;
+  font-size: 30px !important;
   }
 
   .upload-div{

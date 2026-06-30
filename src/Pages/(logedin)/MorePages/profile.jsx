@@ -72,7 +72,7 @@ export default function PersonalDetails() {
       <div className="pinfo">
         <div className="cover-proimage">
           {previewImage ? (
-            <CustomImage source={previewImage} alt="Preview" />
+              <CustomImage source={previewImage} alt="Preview" />
           ) : userdata?.avatarUrl ? (
             <CustomImage source={`${MediaUrl}${userdata.avatarUrl}`} />
           ) : userdata?.first_name && userdata?.last_name ? (
