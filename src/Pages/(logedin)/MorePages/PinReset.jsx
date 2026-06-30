@@ -16,43 +16,42 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { MediaUrl } from "../../../../env.config";
 import CustomImage from "../../../Components/Images/CustomImage";
 import Input from "../../../Components/Inputs/Input";
-import { uploadimage, ChangePassword } from "../../../services/AuthServices";
+import { Changepin } from "../../../services/AuthServices";
 import FormInput from "../../../Components/Forms/FormInputs";
 
-export default function PasswordReset() {
+export default function PinReset() {
 
-    const [oldpassword, setOldpassword] = useState("")
-    const [password, setpassword] = useState('')
-    const [confpassword, setConfPassword] = useState("")
+    const [oldpin, setOldpin] = useState("")
+    const [pin, setPin] = useState('')
+    const [confpin, setConfPin] = useState("")
 
     const { showLoader, hideLoader } = useLoader();
     const { showAlert } = useAlert();
 
 
-    const isValid = oldpassword.trim() && password.trim() && confpassword == password;
+    const isValid = oldpin.trim() && pin.trim() && confpin == pin;
 
-    const handlePasswordChange = async (e) => {
+    const handlePinChange = async (e) => {
         e.preventDefault();
         showLoader()
         try{
             const formData = new FormData()
 
-            formData.append("old_password", oldpassword);
-            formData.append("new_password", password);
-            formData.append("confirm_password", confpassword);
+            formData.append("old_pin", oldpin);
+            formData.append("new_pin", pin);
+            formData.append("confirm_pin", confpin);
 
-            const data = await ChangePassword(formData);
+            const data = await Changepin(formData);
             console.log(data)
 
             if (data?.data.success) {
                 hideLoader();
                 showAlert({
                     type: "success",
-                    message: data?.success || "password updated successfully"
+                    message: data?.success || "pin changed successfully"
                 })
-                setOldpassword("");
-                setpassword("");
-                setConfPassword("");
+               setConfPin("")
+               setPin('')
             }
         }catch (error) {
             hideLoader();
@@ -60,7 +59,7 @@ export default function PasswordReset() {
                 type: "failed",
                 message: error?.response?.data?.message ||
                 error?.message ||
-                "Error Failed to change password",
+                "Error Failed to change transaction pin",
             })
         }
     }
@@ -68,45 +67,45 @@ export default function PasswordReset() {
     return(
 
         <main className="dashboard-main-content account-dashboard">
-            <h2>Change Password</h2>
-            <p>Password no more secure change now!!</p>
+            <h2>Change transaction pin</h2>
+            <p>Need to reset transaction pin do it in one click</p>
             <div className="reset-pass-form">
                 <form
                           action="post"
                           onSubmit={(e) => {
-                            isValid && handlePasswordChange(e);
+                            isValid && handlePinChange(e);
                           }}
                           className="login-form signup-form"
                         >
 
                             <FormInput
                             className="login-form-input signup-form-input"
-                            labelText="Old password"
+                            labelText="Old pin"
                             required
-                            defaultvalue={oldpassword}
-                            type="password"
-                            onchange={(e) => setOldpassword(e.target.value)}
-                            placeholder="Enter password (min of 8 characters)"
+                            defaultValue={oldpin}
+                            type="number"
+                            onchange={(e) => setOldpin(e.target.value)}
+                            placeholder="Enter 4 digit pin"
                           />
                 
 
                           <FormInput
                             className="login-form-input signup-form-input"
-                            labelText="New password"
+                            labelText="New pin"
                             required
-                            defaultvalue={password}
-                            type="password"
-                            onchange={(e) => setpassword(e.target.value)}
-                            placeholder="Enter password (min of 8 characters)"
+                            defaultValue={pin}
+                            type="number"
+                            onchange={(e) => setPin(e.target.value)}
+                            placeholder="Enter 4 digit pin"
                           />
                 
                           <FormInput
                             className="login-form-input signup-form-input"
-                            labelText="Confirm new password"
-                            type="password"
-                            defaultValue={confpassword}
-                            onchange={(e) => setConfPassword(e.target.value)}
-                            placeholder="Enter same password"
+                            labelText="Confirm new pin"
+                            type="number"
+                            defaultValue={confpin}
+                            onchange={(e) => setConfPin(e.target.value)}
+                            placeholder="Enter same pin"
                           />
                           
                 

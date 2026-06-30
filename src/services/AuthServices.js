@@ -9,7 +9,7 @@ export const login = async (email, password) => {
     password
 });
 
-    const {access, refresh, user} = response.data;
+const {access, refresh, user} = response.data;
     localStorage.setItem('access_token', access);
     localStorage.setItem('refresh_token', refresh);
     localStorage.setItem('user', JSON.stringify(user));
@@ -44,4 +44,24 @@ export const uploadimage = async (formData) => {
     })
 
     return response
+}
+
+export const ChangePassword = async (formData) => {
+    const response = await api.post("/user/", formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    })
+
+    return response
+}
+
+export const Changepin = async (formData) => {
+    const respose = await api.patch("/user/", formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    })
+
+    return respose
 }

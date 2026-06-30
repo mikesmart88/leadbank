@@ -81,7 +81,7 @@ export default function More() {
                     <Icon name="LuShieldCheck" /> Two Factor Authentication
                 </span>
                 </Link>
-                <Link>
+                <Link to="/settings/pin/change/">
                 <span>
                     <Icon name="MdLock" /> Change your Pin
                 </span>
@@ -100,7 +100,7 @@ export default function More() {
                     <Icon name="IoStarHalfSharp" /> Affilates & Referrals
                 </span>
                 </Link>
-                <Link>
+                <Link to="mailto:support@leadbankuniversal.com">
                 <span>
                     <Icon name="LuMessageCircleMore" /> Talk to Support
                 </span>
