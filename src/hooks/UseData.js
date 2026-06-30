@@ -17,6 +17,8 @@ export const useData = () => {
     paymentWays: []
   })
 
+  const [limits, setLimits] = useState({});
+
   const { data: userinfo } = UseFetch(`${BaseUrl}/user/data/`, "user data", {
     headers: AuthHeaders(),
   });
@@ -58,6 +60,14 @@ export const useData = () => {
     "company support",
   );
 
+  const {data: limitdata} = UseFetch(
+    `${BaseUrl}/account/limits`,
+    "account transaction limit",
+    {
+      headers: AuthHeaders(),
+    },
+  )
+
   useEffect(() => {
     if (userinfo) {
       setUserData(userinfo);
@@ -94,6 +104,13 @@ export const useData = () => {
     }
   }, [supportdata]);
 
+  
+useEffect(() => {
+    if (limitdata) {
+      setLimits(limitdata);
+    }
+  }, [limitdata]);
+
 
   return {
     userdata,
@@ -102,5 +119,6 @@ export const useData = () => {
     cardData,
     cardTransactions,
     supportData,
+    limits
   };
 };

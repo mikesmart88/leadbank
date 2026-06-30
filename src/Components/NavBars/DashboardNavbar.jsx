@@ -56,7 +56,7 @@ export default function DashboardNavbar({ style, className, ...props }) {
           <Link to={supportData?.support.chatLink} className="normal-link setting">
             <IoLogoWhatsapp size={18} style={{ fill: "#06a742" }} />
           </Link>
-          <Link className="normal-link whatsapp-chat">
+          <Link to="/more/" className="normal-link whatsapp-chat">
             <Icon name="LuSettings" />
           </Link>
           <div className="profile-menu-dropdown">

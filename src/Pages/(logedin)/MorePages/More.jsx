@@ -34,12 +34,12 @@ export default function More() {
 
     return (
         <main className="dashboard-main-content account-dashboard">
-            <h2>More</h2>
+            <h2>Settings & More</h2>
             <p>Manage more activites in your account</p>
 
             <div className="more-section">
                 <h3>Account</h3>
-                <Link>
+                <Link to="/profile/">
                 <span>
                     <Icon name="LuUser" /> Your Profile
                 </span>
@@ -61,7 +61,7 @@ export default function More() {
 
             <div className="more-section">
                 <h3>Finances</h3>
-                <Link>
+                <Link to="/account/limits/"> 
                 <span>
                     <Icon name="IoPieChart" /> Transaction Limits
                 </span>
@@ -71,7 +71,7 @@ export default function More() {
 
             <div className="more-section">
                 <h3>Security</h3>
-                <Link>
+                <Link to="/settings/password/change/">
                 <span>
                     <Icon name="MdKey" /> Change Password
                 </span>

@@ -10,6 +10,9 @@ import PinInfo from "../Pages/Auth/RegistrationPages/transactionpin";
 
 import Dashboard from "../Pages/(logedin)/DashBoardPages/Dashboard";
 import Accounts from "../Pages/(logedin)/AccountsPages/Accounts";
+import PersonalDetails from "../Pages/(logedin)/MorePages/profile";
+import AccountLimit from "../Pages/(logedin)/MorePages/accounLimits";
+import PasswordReset from "../Pages/(logedin)/MorePages/PasswordReset";
 
 import GenLayout from "../Components/Layouts/GenLayout";
 import SignupLayout from "../Components/Layouts/SignupLayout";
@@ -60,6 +63,10 @@ export default function GeneralRouter() {
             <Route path="/card/statement" element={<CardStatement />} />
             <Route path="/account/statement/" element={<AccountStatement />} />
             <Route path="/more/" element={<More />} />
+            <Route path="/profile/" element={<PersonalDetails />} />
+            <Route path="/Account/limits/" element={<AccountLimit />} />
+            <Route path="/settings/password/change/" element={<PasswordReset />} />
+
           </Route>
 
           <Route element={<KYCRoute />}>

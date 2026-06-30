@@ -34,3 +34,14 @@ const response = await api.post("/signup/", formData, {
 
 return response.data;
 }
+
+
+export const uploadimage = async (formData) => {
+    const response = await api.put("/user/", formData, {
+         headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    })
+
+    return response
+}
