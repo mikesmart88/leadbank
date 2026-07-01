@@ -2027,7 +2027,7 @@ body {
     width: 48px;
     max-height: 48px !important;
 
-    .img {
+    img {
       min-height: 48px !important;
     }
   }
@@ -3139,9 +3139,8 @@ body {
 }
 
 .payment-sidebar {
-  width: 35%;
+  width: 100%;
   padding: 20px;
-  border-right: 1px solid #eee;
 
   h3 {
     font-size: 1.2rem;
@@ -3760,4 +3759,104 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.payment-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.payment-dmodal {
+    width: 100%;
+    max-width: 470px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(0,0,0,.15);
+}
+
+.payment-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.hourglass {
+    font-size: 70px;
+    display: inline-block;
+    animation: rotateHourglass 2s linear infinite;
+    transform-origin: center;
+}
+
+@keyframes rotateHourglass {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.payment-dmodal h2 {
+    margin-bottom: 15px;
+    font-size: 26px;
+    color: #111827;
+}
+
+.payment-message {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.payment-time {
+    color: #111827;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.payment-note {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.dashboard-btn {
+    width: 100%;
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.dashboard-btn:hover {
+    background: #1d4ed8;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

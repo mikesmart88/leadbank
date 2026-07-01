@@ -865,9 +865,13 @@
     }
   }
 
+  .payment-overlay{
+    align-items: flex-end;
+  }
+
   .payment-modal{
     flex-wrap: wrap;
-    min-height: 100%;
+    // min-height: 100%;
     border-radius: 0px;
     box-sizing: border-box;
     display: block;
@@ -877,6 +881,7 @@
     width: 100%;
     height: fit-content;
     box-sizing: border-box;
+    padding: 0px;
   }
 
   .payment-content{
@@ -1011,5 +1016,45 @@
         font-size: 13px;
       }
     }
+  }
+}
+
+.crypto-payment{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  
+  div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 15px;
+
+    span{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px;
+      border: 1px solid $comon-color;
+      border-radius: 5px;
+
+      small{
+        margin: 0px;
+         display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      span{
+        background-color: $comon-color;
+        cursor: pointer;
+      }
+    }
+
   }
 }

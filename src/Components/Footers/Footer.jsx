@@ -70,6 +70,20 @@ export default function Footer({ style, className, ...props }) {
           <Link>Help & community</Link>
         </div>
         <div className="linksHolder socials">
+          <span className="foot-social-icon">
+            <Link>
+              <Icon name="IoLogoInstagram" />
+            </Link>
+            <Link>
+              <Icon name="IoLogoTwitter" />
+            </Link>
+            <Link>
+              <Icon name="IoLogoLinkedin" />
+            </Link>
+            <Link>
+              <Icon name="IoLogoFacebook" />
+            </Link>
+          </span>
           <Link to={`tel:${supportData.support?.supportPhone}`}>{supportData.support?.supportPhone}</Link>
           <CustomButton onClick={() => navigate(`${supportData.support?.chatLink}`)}>
             <Icon name="IoLogoWhatsapp" /> Chat on Whatsapp

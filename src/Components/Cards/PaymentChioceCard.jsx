@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LuBuilding2, LuBitcoin, LuCode, LuCopy } from "react-icons/lu";
 import { FaFaceSadTear } from "react-icons/fa6";
 import { useData } from "../../hooks/UseData";
 import { useAlert } from "../../contexts/AlertContext";
 import CustomButton from "../Buttons/CustomButtons";
 import Icon from "../Icons/Icon";
+import { useLoader } from "../../contexts/LoaderContext";
+import { useNavigate } from "react-router";
 
 export default function PaymentChoiceModal({ open, onclose, ...props }) {
-  const [selectedMethod, setSelectedMethod] = useState("crypto");
+  const [selectedMethod, setSelectedMethod] = useState("");
   const { showAlert } = useAlert();
+  const { showLoader, hideLoader } = useLoader()
+  const navigate = useNavigate()
 
   const { supportData } = useData();
 
@@ -17,6 +21,23 @@ export default function PaymentChoiceModal({ open, onclose, ...props }) {
 
     return `${address.slice(0, 7)}...${address.slice(-7)}`;
   };
+
+
+  useEffect(() => {
+    if(selectedMethod == "bank") {
+      showLoader();
+      setTimeout(() => {
+        hideLoader()
+        showAlert({
+          type: "failed",
+          message: "Error, bank deposit is currenly unavaliable right now!!, Please select a deffrent method"
+        })
+        setSelectedMethod("")
+      }, 300);
+    }else if (selectedMethod == "crypto"){
+      navigate("/dashboard/funds/top_up/")
+    }
+  }, [selectedMethod])
 
   const copyWalletAddress = async (address) => {
     try {
@@ -33,7 +54,7 @@ export default function PaymentChoiceModal({ open, onclose, ...props }) {
   if(!open) return null;
 
   return (
-    <section className="verification-overlay">
+    <section className="verification-overlay payment-overlay">
       <div className="payment-modal">
         <CustomButton className="close-details" onClick={onclose}>
           <Icon name="IoClose" />
@@ -66,52 +87,6 @@ export default function PaymentChoiceModal({ open, onclose, ...props }) {
               <p>Add with cryptocurrency</p>
             </div>
           </div>
-        </div>
-
-        <div className="payment-content">
-          {selectedMethod === "bank" && (
-            <>
-              <h3>Bank Transfer</h3>
-
-              <div className="detail-card null-card">
-                <FaFaceSadTear />
-                <h2>Currently Unavaliable</h2>
-              </div>
-            </>
-          )}
-
-          {selectedMethod === "crypto" && (
-            <>
-              <h3>Crypto Payment</h3>
-
-              {supportData?.paymentWays.map((way, index) => (
-                <>
-                  <div className="detail-card">
-                    <span>Network</span>
-                    <strong>{way.tokenNetwork}</strong>
-                  </div>
-
-                  <div className="detail-card">
-                    <span>Wallet Address</span>
-                    <strong>{maskWalletAddress(way.walletAddress)}</strong>
-                  </div>
-                  <small
-                    onClick={() => copyWalletAddress(way.walletAddress)}
-                    style={{
-                      fontSize: "12px",
-                      marginTop: "5px",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <LuCopy />
-                    copy wallet address
-                  </small>
-                </>
-                
-              ))}
-              
-            </>
-          )}
         </div>
       </div>
     </section>

@@ -13,6 +13,7 @@ export const routeConfig = [
     {path: "/account/statement/", title: "Accounts"},
     {path: "/account/create/new/", title: "Accounts"},
     {path: "/dashboard/funds/send/*", title: "Dashboard"},
+    {path: "/dashboard/funds/top_up/*", title: "Dashbaord" },
     {path: "/profile/", title: "More"},
     {path: "/account/limits/", title: "More"},
     {path: "/settings/password/change/", title: "More"},

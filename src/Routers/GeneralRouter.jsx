@@ -28,6 +28,7 @@ import CardStatement from "../Pages/(logedin)/CardsPages/CardStatement";
 import CardDeposit from "../Pages/(logedin)/DepositingPages/CardDeposit";
 import CreateAccount from "../Pages/(logedin)/AccountsPages/CreateAccount";
 import WithdrawFunds from "../Pages/(logedin)/withdrawalPages/SendFunds";
+import DepositeFunds from "../Pages/(logedin)/DepositingPages/WallectDeposit";
 
 import ProtectedRoute from "./ProtectedRoute";
 import OnlyGuestRoute from "./OnlyGuestRoute";
@@ -81,6 +82,7 @@ export default function GeneralRouter() {
           <Route path="/card/top-up/*" element={<CardDeposit />} />
           <Route path="/account/create/new/" element={<CreateAccount />} />
           <Route path="/dashboard/funds/send/*" element={<WithdrawFunds />} />
+          <Route path="/dashboard/funds/top_up/*" element={<DepositeFunds />} />
         </Route>
         <Route path="/pdf/" element={<ReceiptPreview />} />
       </Routes>
