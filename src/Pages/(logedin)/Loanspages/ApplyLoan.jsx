@@ -40,6 +40,18 @@ export default function ApplyLoans() {
               : "*****"}
           </strong>
         </div>
+        <div className="action-button-holder">
+                  <CustomButton
+                    onClick={() => toggleBalanceVisibility()}
+                    style={{ borderRadius: "50%", padding: "10px" }}
+                  >
+                    {showBal ? (
+                      <Icon name="IoEyeOffOutline" />
+                    ) : (
+                      <Icon name="IoEyeOutline" />
+                    )}
+                  </CustomButton>
+                </div>
         </section>
 
         <section className="transaction-section growth-hub-section">
