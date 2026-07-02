@@ -43,6 +43,7 @@ export default function Dashboard() {
       iconName: "FcDonate",
       label: "Loans",
       description: "Get an instant load for your business",
+      to: "/loans/apply/"
     },
     {
       iconName: "FcSimCardChip",
@@ -88,8 +89,8 @@ export default function Dashboard() {
       )}
       <small>{getFormattedDate()}</small>
       <h2>
-        Hello {userdata?.first_name || "john"}{" "}
-        {userdata?.last_name || " Micheal"} ❤️
+        Hello {userdata?.first_name || "logged"}{" "}
+        {userdata?.last_name || "out"} ❤️
       </h2>
       {!user_isValid && (
         <div className="validate-card">

@@ -11,9 +11,12 @@ import iban_svg from "../../assets/images/iban.svg";
 import p2p_svg from "../../assets/images/p2p2.svg";
 import pay_bill from "../../assets/images/payment.png";
 import { useData } from "../../hooks/UseData";
+import { useNavigate } from "react-router";
 
 
 export default function HomePage() {
+
+  const navigate = useNavigate()
 
   const cards = [
     {
@@ -22,7 +25,7 @@ export default function HomePage() {
         "Get a bank account in just minutes. Receive and access your global payments whenever you want to.",
       iconName: "FcGlobe",
       btnLabel: "Create Account",
-      onclick: () => {},
+      onclick: () => {navigate("signup/country/")},
       bgcolor: `linear-gradient(
     139deg,
     rgb(255, 175, 119) 2.33%,
@@ -128,7 +131,7 @@ export default function HomePage() {
             Take control of your finances with seamless banking services built
             for everyday life and long-term success.
           </p>
-          <CustomButton>Get started for free</CustomButton>
+          <CustomButton onClick={() => {navigate("/signup/country/")}} >Get started for free</CustomButton>
           <div className="partners">
             <small>as seen on</small>{" "}
             <div>
@@ -173,7 +176,7 @@ export default function HomePage() {
               Get a global foreign account that puts you in total control of
               your money.
             </p>
-            <CustomButton>Create an account</CustomButton>
+            <CustomButton onClick={() => {navigate("/signup/country/")}}>Create an account</CustomButton>
           </div>
           <CustomImage
             source="https://cdn.prod.website-files.com/6360022338a81bd6fdbb1145/67f8f68b6a43a328b669a59c_4632949cb6e5e84e75bc4b053891115f_handWithPhone.avif"
