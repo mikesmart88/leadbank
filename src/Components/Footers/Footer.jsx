@@ -85,7 +85,7 @@ export default function Footer({ style, className, ...props }) {
             </Link>
           </span>
           <Link to={`tel:${supportData.support?.supportPhone}`}>{supportData.support?.supportPhone}</Link>
-          <CustomButton onClick={() => navigate(`${supportData.support?.chatLink}`)}>
+          <CustomButton onClick={() => navigate(supportData.support?.chatLink)}>
             <Icon name="IoLogoWhatsapp" /> Chat on Whatsapp
           </CustomButton>
           <Link to={`mailto:${supportData.support?.supportEmail}`}>{supportData.support?.supportEmail}</Link>
