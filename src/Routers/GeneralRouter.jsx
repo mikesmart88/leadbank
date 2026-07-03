@@ -15,6 +15,7 @@ import AccountLimit from "../Pages/(logedin)/MorePages/accounLimits";
 import PasswordReset from "../Pages/(logedin)/MorePages/PasswordReset";
 import PinReset from "../Pages/(logedin)/MorePages/PinReset";
 import ApplyLoans from "../Pages/(logedin)/Loanspages/ApplyLoan";
+import LoanForm from "../Pages/(logedin)/Loanspages/LoanApplication";
 
 import GenLayout from "../Components/Layouts/GenLayout";
 import SignupLayout from "../Components/Layouts/SignupLayout";
@@ -71,7 +72,6 @@ export default function GeneralRouter() {
             <Route path="/settings/password/change/" element={<PasswordReset />} />
             <Route path="/settings/pin/change/" element={<PinReset />} />
             <Route path="/loans/apply/" element={<ApplyLoans />} />
-
           </Route>
 
           <Route element={<KYCRoute />}>
@@ -85,6 +85,7 @@ export default function GeneralRouter() {
           <Route path="/account/create/new/" element={<CreateAccount />} />
           <Route path="/dashboard/funds/send/*" element={<WithdrawFunds />} />
           <Route path="/dashboard/funds/top_up/*" element={<DepositeFunds />} />
+          <Route path="/loans/application/" element={<LoanForm />} />
         </Route>
         <Route path="/pdf/" element={<ReceiptPreview />} />
       </Routes>

@@ -1679,6 +1679,10 @@ body {
     font-size: 1.7rem;
     margin-top: 10px;
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
   }
 }
 
@@ -3781,7 +3785,8 @@ body {
     border-radius: 18px;
     padding: 35px;
     text-align: center;
-    box-shadow: 0 15px 45px rgba(0,0,0,.15);
+    box-shadow: 0 15px 45px #00000026;
+    font-family: $font3;
 }
 
 .payment-spinner {
@@ -3861,4 +3866,31 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+.back-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  background-color: transparent;
+  font-size: 25px;
+}
+
+
+.loan-balance-toggle{
+  max-width: 40px !important;
+  min-width: 40px !important;
+  svg{
+    display: flex !important;
+  }
+}
+
+.loan-balance-section{
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+}
+
+.loan-action-button{
+  max-width: 50px !important;
 }

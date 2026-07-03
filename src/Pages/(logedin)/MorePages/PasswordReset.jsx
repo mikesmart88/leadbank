@@ -18,6 +18,7 @@ import CustomImage from "../../../Components/Images/CustomImage";
 import Input from "../../../Components/Inputs/Input";
 import { uploadimage, ChangePassword } from "../../../services/AuthServices";
 import FormInput from "../../../Components/Forms/FormInputs";
+import BackButton from "../../../Components/Buttons/BackButton";
 
 export default function PasswordReset() {
 
@@ -68,7 +69,7 @@ export default function PasswordReset() {
     return(
 
         <main className="dashboard-main-content account-dashboard">
-            <h2>Change Password</h2>
+            <h2> <BackButton /> Change Password</h2>
             <p>Password no more secure change now!!</p>
             <div className="reset-pass-form">
                 <form

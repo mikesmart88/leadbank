@@ -5,7 +5,7 @@ import CustomButton from "../../../Components/Buttons/CustomButtons";
 import Icon from "../../../Components/Icons/Icon";
 import QuickActionCard from "../../../Components/Cards/QuickActionCard";
 import GrowthHubLink from "../../../Components/Cards/GrowthHubCard";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import TransactionTable from "../../../Components/Tables/TransactionTable";
 import { BaseUrl } from "../../../../env.config";
 import PaymentCard from "../../../Components/Cards/PaymentCard";
@@ -17,6 +17,8 @@ export default function ApplyLoans() {
     const { userdata, useraccount, transactions, supportData } = useData();
 
     const loanTransactions = []
+
+    const navigate = useNavigate();
 
     const [showBal, setShowBal] = useState(true);
 
@@ -30,7 +32,7 @@ export default function ApplyLoans() {
         <h2>Loans & Grants</h2>
         <p>Apply for a loan and get the funds you need to grow your business.</p>
         <br />
-        <section className="total-balance-section">
+        <section className="total-balance-section loan-balance-section">
         <div className="balance-show">
           <small>Total Loan Balance</small>
           <strong>
@@ -40,10 +42,11 @@ export default function ApplyLoans() {
               : "*****"}
           </strong>
         </div>
-        <div className="action-button-holder">
+        <div className="action-button-holder loan-action-button">
                   <CustomButton
                     onClick={() => toggleBalanceVisibility()}
                     style={{ borderRadius: "50%", padding: "10px" }}
+                    className="loan-balance-toggle"
                   >
                     {showBal ? (
                       <Icon name="IoEyeOffOutline" />
@@ -74,7 +77,7 @@ export default function ApplyLoans() {
                                 <h4>No Loans yet</h4>
                                 <p>There is no Loan available for this current account yet.</p>
                                 <CustomButton
-                                  onClick={() => {}}
+                                  onClick={() => navigate("/loans/application/")}
                                 >
                                   Apply for Loan
                                 </CustomButton>

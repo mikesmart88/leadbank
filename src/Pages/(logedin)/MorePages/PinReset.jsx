@@ -18,6 +18,7 @@ import CustomImage from "../../../Components/Images/CustomImage";
 import Input from "../../../Components/Inputs/Input";
 import { Changepin } from "../../../services/AuthServices";
 import FormInput from "../../../Components/Forms/FormInputs";
+import BackButton from "../../../Components/Buttons/BackButton";
 
 export default function PinReset() {
 
@@ -67,7 +68,7 @@ export default function PinReset() {
     return(
 
         <main className="dashboard-main-content account-dashboard">
-            <h2>Change transaction pin</h2>
+            <h2> <BackButton /> Change transaction pin</h2>
             <p>Need to reset transaction pin do it in one click</p>
             <div className="reset-pass-form">
                 <form

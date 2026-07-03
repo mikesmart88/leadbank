@@ -19,4 +19,5 @@ export const routeConfig = [
     {path: "/settings/password/change/", title: "More"},
     {path: "/settings/pin/change/", title: "More"},
     {path: "/loans/apply/", title: "Loans"},
+    {path: "/loans/application/", title: "Loans"},
 ]

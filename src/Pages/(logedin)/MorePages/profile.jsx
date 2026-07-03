@@ -17,6 +17,7 @@ import { MediaUrl } from "../../../../env.config";
 import CustomImage from "../../../Components/Images/CustomImage";
 import Input from "../../../Components/Inputs/Input";
 import { uploadimage } from "../../../services/AuthServices";
+import BackButton from "../../../Components/Buttons/BackButton";
 
 export default function PersonalDetails() {
   const { userdata } = useData();
@@ -66,7 +67,7 @@ export default function PersonalDetails() {
 
   return (
     <main className="dashboard-main-content account-dashboard">
-      <h2>Profile</h2>
+      <h2> <BackButton /> Profile</h2>
       <p>View and update profile details</p>
 
       <div className="pinfo">

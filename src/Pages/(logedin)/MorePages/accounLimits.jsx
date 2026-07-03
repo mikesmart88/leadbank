@@ -18,6 +18,7 @@ import CustomImage from "../../../Components/Images/CustomImage";
 import Input from "../../../Components/Inputs/Input";
 import { uploadimage } from "../../../services/AuthServices";
 import CustomProgress from "../../../Components/ProgessBars/CustomProgress";
+import BackButton from "../../../Components/Buttons/BackButton";
 
 
 export default function AccountLimit() {
@@ -28,7 +29,7 @@ export default function AccountLimit() {
 
     return (
         <main className="dashboard-main-content account-dashboard">
-            <h2>Transaction Limits</h2>
+            <h2> <BackButton /> Transaction Limits</h2>
             <p>View all Total transaction and know when you have reached your limit</p>
 
             <div className="more-section p-section">
