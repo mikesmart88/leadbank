@@ -30,7 +30,8 @@ export default function TransactionTable({
             type: data.type,
             status: data.status,
             description: data.description,
-            id: data.id
+            id: data.id,
+            currency: data.currency,
         })
     }
 
@@ -47,6 +48,7 @@ export default function TransactionTable({
                     status={details.status}
                     description={details.description}
                     id={details.id}
+                    currency={details.currency}
                     onclose={() => {setShowdetail(false)}}
                   />
             <div className="table-wrapper" style={{width: "100%"}}>
@@ -78,7 +80,8 @@ export default function TransactionTable({
                         type: data.type,
                         status: data.status,
                         description: data.destination,
-                        id: data.id
+                        id: data.id,
+                        currency: data.currency,
                     })}}>View Details</Link>
                    </td>
                 </tr>

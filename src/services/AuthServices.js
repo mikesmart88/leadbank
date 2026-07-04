@@ -65,3 +65,26 @@ export const Changepin = async (formData) => {
 
     return respose
 }
+
+export const forgotPassword = async (type, email) => {
+    const response = await api.post("/security/reset/", { type, email });
+    return response.data;
+}
+
+export const Resetpassword = async (password, token) => {
+    const response = await api.put("/security/reset/", {
+        password,
+        token,
+    });
+
+    return response.data;
+};
+
+export const ResetTransactionPin = async (pin, token) => {
+    const response = await api.patch("/security/reset/", {
+        pin,
+        token,
+    });
+
+    return response.data;
+}

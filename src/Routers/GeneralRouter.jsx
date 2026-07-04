@@ -7,6 +7,9 @@ import CountryInfo from "../Pages/Auth/RegistrationPages/CountryInfo";
 import PersoanlInfo from "../Pages/Auth/RegistrationPages/PersonalInfoSignUp";
 import PassInfo from "../Pages/Auth/RegistrationPages/PasswordInfo";
 import PinInfo from "../Pages/Auth/RegistrationPages/transactionpin";
+import ForgotPassword from "../Pages/Auth/LoginPages/ForgotPassword";
+import ResetPassword from "../Pages/Auth/LoginPages/ResetPassword";
+import ResetPin from "../Pages/(logedin)/MorePages/ResetPin";
 
 import Dashboard from "../Pages/(logedin)/DashBoardPages/Dashboard";
 import Accounts from "../Pages/(logedin)/AccountsPages/Accounts";
@@ -49,6 +52,8 @@ export default function GeneralRouter() {
 
         <Route element={<OnlyGuestRoute />}>
           <Route path="/login/" element={<Login />} />
+          <Route path="/password/forgotten/" element={<ForgotPassword />} />
+          <Route path="/password/reset/:token" element={<ResetPassword />} />
           <Route element={<SignupLayout />}>
             <Route path="/signup/country/" element={<CountryInfo />} />
             <Route path="/signup/personal/" element={<PersoanlInfo />} />
@@ -58,6 +63,7 @@ export default function GeneralRouter() {
         </Route>
 
         <Route element={<ProtectedRoute />}>
+        <Route path="/pin/reset/:token" element={<ResetPin />} />
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard/" element={<Dashboard />} />
             <Route path="/accounts/" element={<Accounts />} />
@@ -89,6 +95,6 @@ export default function GeneralRouter() {
         </Route>
         <Route path="/pdf/" element={<ReceiptPreview />} />
       </Routes>
-    </>
+    </> 
   );
 }

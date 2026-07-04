@@ -19,6 +19,7 @@ import Input from "../../../Components/Inputs/Input";
 import { Changepin } from "../../../services/AuthServices";
 import FormInput from "../../../Components/Forms/FormInputs";
 import BackButton from "../../../Components/Buttons/BackButton";
+import ResetPinButton from "../../../Components/Buttons/ResetPinButton";
 
 export default function PinReset() {
 
@@ -108,6 +109,8 @@ export default function PinReset() {
                             onchange={(e) => setConfPin(e.target.value)}
                             placeholder="Enter same pin"
                           />
+
+                          <ResetPinButton />
                           
                 
                           <CustomButton {...(isValid ? {} : { disabled: true })} type="submit">

@@ -17,7 +17,7 @@ export default function PassInfo() {
   const passwordRegex =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  const isValid = passwordRegex.test(password) && password.trim() == confpassword.trim();
+  const isValid = password.trim() == confpassword.trim();
 
   const handleSave = (e) => {
     e.preventDefault();

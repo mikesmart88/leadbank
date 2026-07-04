@@ -96,7 +96,7 @@ export default function Login() {
             defaultValue={password}
             onchange={(e) => setpassword(e.target.value)}
           />
-          <Link className="forgoten-password-link">Forgoten Password?</Link>
+          <Link to="/password/forgotten/" className="forgoten-password-link">Forgoten Password?</Link>
           <CustomButton {...(isValid ? {} : { disabled: true })} type="submit">
             Login
           </CustomButton>

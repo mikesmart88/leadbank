@@ -27,7 +27,7 @@ import { SendFunds } from "../../../services/TransactionServices";
 import currencies from "../../../assets/currencies.json";
 import FormCheckbox from "../../../Components/Forms/FormCheckbox";
 import PaymentProcessingModal from "../../../Components/Cards/ProcessingPayment";
-import LoanProcessingModal from "../../../Components/Cards/loanprocessing";
+import LoanProcessingModal from '../../../Components/Cards/loanprocessing';
 
 
 export default function LoanForm() {

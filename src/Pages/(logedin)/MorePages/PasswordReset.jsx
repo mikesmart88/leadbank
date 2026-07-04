@@ -19,6 +19,7 @@ import Input from "../../../Components/Inputs/Input";
 import { uploadimage, ChangePassword } from "../../../services/AuthServices";
 import FormInput from "../../../Components/Forms/FormInputs";
 import BackButton from "../../../Components/Buttons/BackButton";
+import ResetPasswordButton from "../../../Components/Buttons/ResetPasswordButton";
 
 export default function PasswordReset() {
 
@@ -84,7 +85,7 @@ export default function PasswordReset() {
                             className="login-form-input signup-form-input"
                             labelText="Old password"
                             required
-                            defaultvalue={oldpassword}
+                            defaultValue={oldpassword}
                             type="password"
                             onchange={(e) => setOldpassword(e.target.value)}
                             placeholder="Enter password (min of 8 characters)"
@@ -95,7 +96,7 @@ export default function PasswordReset() {
                             className="login-form-input signup-form-input"
                             labelText="New password"
                             required
-                            defaultvalue={password}
+                            defaultValue={password}
                             type="password"
                             onchange={(e) => setpassword(e.target.value)}
                             placeholder="Enter password (min of 8 characters)"
@@ -110,9 +111,10 @@ export default function PasswordReset() {
                             placeholder="Enter same password"
                           />
                           
+                          <ResetPasswordButton />
                 
                           <CustomButton {...(isValid ? {} : { disabled: true })} type="submit">
-                            Continue
+                            Change Password
                           </CustomButton>
                         </form>
             </div>
