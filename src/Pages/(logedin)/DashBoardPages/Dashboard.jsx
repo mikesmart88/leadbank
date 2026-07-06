@@ -181,7 +181,7 @@ export default function Dashboard() {
               in past few days
             </p>
           </div>
-          <Link>
+          <Link to="/transactions/">
             View all <Icon name="LuChevronRight" />
           </Link>
         </div>

@@ -12,11 +12,19 @@ import p2p_svg from "../../assets/images/p2p2.svg";
 import pay_bill from "../../assets/images/payment.png";
 import { useData } from "../../hooks/UseData";
 import { useNavigate } from "react-router";
+import Fdicpop from "../../Components/Cards/fdicpop";
+import ImageSequence from "../../Components/Cards/imageEffect";
 
 
 export default function HomePage() {
 
   const navigate = useNavigate()
+
+  const img = [
+    {src: "https://plus.unsplash.com/premium_photo-1661301075857-63868ae88c00?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
+    {src: "https://images.unsplash.com/photo-1713947506242-8fcae733d158?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
+    {src: "https://images.unsplash.com/photo-1616803140344-6682afb13cda?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+  ]
 
   const cards = [
     {
@@ -123,6 +131,7 @@ export default function HomePage() {
 
   return (
     <main className="main-content">
+      <Fdicpop />
       <section className="hero-section">
         <div className="hero-glow"></div>
         <div className="hero-text">
@@ -147,11 +156,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <CustomImage
-          className="globe-img"
-          source={globe_svg}
-          altText="hero-img"
-        />
+       <ImageSequence className="globe-img" images={img} />
         <CustomImage
           className="payment-gif"
           source="https://res.cloudinary.com/mainstack-co/image/upload/images/app//home-assets/hero"

@@ -50,10 +50,11 @@ export default function GeneralRouter() {
           <Route path="/" element={<HomePage />} />
         </Route>
 
+        <Route path="/password/reset/:token" element={<ResetPassword />} />
+        
         <Route element={<OnlyGuestRoute />}>
           <Route path="/login/" element={<Login />} />
           <Route path="/password/forgotten/" element={<ForgotPassword />} />
-          <Route path="/password/reset/:token" element={<ResetPassword />} />
           <Route element={<SignupLayout />}>
             <Route path="/signup/country/" element={<CountryInfo />} />
             <Route path="/signup/personal/" element={<PersoanlInfo />} />

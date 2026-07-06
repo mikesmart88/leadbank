@@ -20,3 +20,14 @@ export const CreateCard = async () => {
   const response = await api.post("/card/")
   return response.data;
 }
+
+export const FundCard = async (account, amt, amount, pin) => {
+  const response = await api.put("/card/", {
+    account,
+    amt,
+    amount,
+    pin,
+  })
+
+  return response.data
+}
