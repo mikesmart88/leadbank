@@ -76,7 +76,7 @@ export default function More() {
                     <Icon name="MdKey" /> Change Password
                 </span>
                 </Link>
-                <Link>
+                <Link to="/settings/2fa/">
                 <span>
                     <Icon name="LuShieldCheck" /> Two Factor Authentication
                 </span>
@@ -95,7 +95,7 @@ export default function More() {
                     <Icon name="LuUsers" /> Community
                 </span>
                 </Link>
-                <Link>
+                <Link to="/referrals/">
                 <span>
                     <Icon name="IoStarHalfSharp" /> Affilates & Referrals
                 </span>

@@ -3,18 +3,20 @@ import { BaseUrl } from "../../env.config";
 import api from "./Api";
 
 export const login = async (email, password) => {
-    
     const response = await axios.post(`${BaseUrl}/login/`, {
-    email,
-    password
-});
+        email,
+        password,
+    });
 
-const {access, refresh, user} = response.data;
-    localStorage.setItem('access_token', access);
-    localStorage.setItem('refresh_token', refresh);
-    localStorage.setItem('user', JSON.stringify(user));
+    // Only save tokens if they exist
+    if (response.data.access) {
+        const { access, refresh, user } = response.data;
 
-    localStorage.setItem("login_time", Date.now());
+        localStorage.setItem("access_token", access);
+        localStorage.setItem("refresh_token", refresh);
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("login_time", Date.now());
+    }
 
     return response.data;
 };
@@ -88,3 +90,37 @@ export const ResetTransactionPin = async (pin, token) => {
 
     return response.data;
 }
+
+export const Set2FA = async (value) => {
+    const response = await api.post("/security/", {
+        value,
+    })
+
+    return response.data
+}
+
+export const VerifyEmail = async (otp) => {
+    const response = await axios.post(`${BaseUrl}/verification/`, {
+        otp,
+    })
+
+   //console.log("VerifyEmail response", response.data);
+
+    const {access, refresh, user} = response.data;
+    localStorage.setItem('access_token', access);
+    localStorage.setItem('refresh_token', refresh);
+    localStorage.setItem('user', JSON.stringify(user));
+
+    localStorage.setItem("login_time", Date.now());
+
+    return response.data;
+}
+
+export const ResendOTp = async (email) => {
+    const response = await axios.put(`${BaseUrl}/verification/`, {
+        email,
+    })
+
+    return response.data;
+}
+

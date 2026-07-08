@@ -718,6 +718,34 @@
     bottom: 50%;
   }
 
+  .referral-section{
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+
+    .img{
+      height: auto;
+      top: 82%;
+    }
+
+    .showLink{
+      margin-top: auto;
+    }
+  }
+
+  .referral{
+    div{
+      width: 100% !important;
+
+      h3{
+        font-size: 1.2rem !important;
+      }
+      p{
+        font-size: 14px !important;
+      }
+    }
+  }
+
 }
 
 @media screen and (max-width: 510px) {
@@ -914,6 +942,15 @@
       padding: 10px;
     }
     
+  }
+
+  .main-form-info{
+
+    .v-section{
+    display: flex !important;
+    justify-content: center !important;
+  }
+
   }
 
 }

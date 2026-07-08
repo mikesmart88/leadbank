@@ -23,6 +23,7 @@ export default function PaymentCard({
 }) {
   return (
     <Link style={style} className={className} to={to} {...props}>
+      <span>Comming soon</span>
       <CustomImage source={imgscr} />
       <h3>{label}</h3>
       <p>{description}</p>

@@ -19,7 +19,7 @@ export default function Fdicpop() {
         <div className="fdic-pop">
             <div>
                 <h3>FDIC</h3>
-            <p>FDIC Insured - Backed by the full faith and credit of ths U.s</p>
+            <p>FDIC Insured - Backed by the full faith and credit of the U.s</p>
             </div>
         </div>
     )

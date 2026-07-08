@@ -82,7 +82,7 @@ export default function Payments() {
           {sendRecieve.map((payment, index) => (
             <PaymentCard
               key={index}
-              className="payment-card"
+              className="payment-card avaliable-card"
               imgscr={payment.imgsrc}
               label={payment.label}
               description={payment.description}

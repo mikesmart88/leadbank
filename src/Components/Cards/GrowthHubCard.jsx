@@ -10,17 +10,24 @@ import { Link } from "react-router";
  * @returns
  */
 
-
-export default function GrowthHubLink({style, className, iconName, label, description,  ...props}) {
-    return (
-        <Link style={style} className={className} {...props}>
-            <span>
-                <Icon name={iconName} />
-            </span>
-            <div>
-                <strong>{label}</strong>
-                <small>{description}</small>
-            </div>
-        </Link>
-    )
+export default function GrowthHubLink({
+  style,
+  className,
+  iconName,
+  label,
+  description,
+  to,
+  ...props
+}) {
+  return (
+    <Link to={to || "/referrals/"} style={style} className={className} {...props}>
+      <span>
+        <Icon name={iconName} />
+      </span>
+      <div>
+        <strong>{label}</strong>
+        <small>{description}</small>
+      </div>
+    </Link>
+  );
 }

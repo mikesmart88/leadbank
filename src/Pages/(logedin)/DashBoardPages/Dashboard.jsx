@@ -71,12 +71,14 @@ export default function Dashboard() {
     {
       iconName: "FcApproval",
       label: "Discount Approved",
+      to:"/referrals/",
       description: "Get approved discount on transfers and bill payments",
     },
     {
       iconName: "FcAdvertising",
       label: "Referral Program",
       description: "refer and earn with ease",
+      to:"/referrals/",
     },
   ];
 
@@ -168,6 +170,7 @@ export default function Dashboard() {
               iconName={grwothlink.iconName}
               label={grwothlink.label}
               description={grwothlink.description}
+              to={growthub.to}
             />
           ))}
         </div>

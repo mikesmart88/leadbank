@@ -23,7 +23,7 @@ function App() {
   useEffect(() => {
     const handler = (e) => {
       showAlert({ type: "info", message: e.detail });
-      navigate("/login");
+      //navigate("/login");
     };
 
     window.addEventListener("session-expired", handler);

@@ -19,6 +19,7 @@ import PasswordReset from "../Pages/(logedin)/MorePages/PasswordReset";
 import PinReset from "../Pages/(logedin)/MorePages/PinReset";
 import ApplyLoans from "../Pages/(logedin)/Loanspages/ApplyLoan";
 import LoanForm from "../Pages/(logedin)/Loanspages/LoanApplication";
+import EmailVerification from "../Pages/Auth/RegistrationPages/Verification";
 
 import GenLayout from "../Components/Layouts/GenLayout";
 import SignupLayout from "../Components/Layouts/SignupLayout";
@@ -34,6 +35,8 @@ import CardDeposit from "../Pages/(logedin)/DepositingPages/CardDeposit";
 import CreateAccount from "../Pages/(logedin)/AccountsPages/CreateAccount";
 import WithdrawFunds from "../Pages/(logedin)/withdrawalPages/SendFunds";
 import DepositeFunds from "../Pages/(logedin)/DepositingPages/WallectDeposit";
+import TwoAF from "../Pages/(logedin)/MorePages/TwoAF";
+import Referral from "../Pages/(logedin)/MorePages/Referral";
 
 import ProtectedRoute from "./ProtectedRoute";
 import OnlyGuestRoute from "./OnlyGuestRoute";
@@ -60,6 +63,7 @@ export default function GeneralRouter() {
             <Route path="/signup/personal/" element={<PersoanlInfo />} />
             <Route path="/signup/setpassword/" element={<PassInfo />} />
             <Route path="/signup/setpin/" element={<PinInfo />} />
+            <Route path="/security/email/verification/" element={<EmailVerification />} />
           </Route>
         </Route>
 
@@ -79,6 +83,8 @@ export default function GeneralRouter() {
             <Route path="/settings/password/change/" element={<PasswordReset />} />
             <Route path="/settings/pin/change/" element={<PinReset />} />
             <Route path="/loans/apply/" element={<ApplyLoans />} />
+            <Route path="settings/2fa/" element={<TwoAF />} />
+            <Route path="/referrals/" element={<Referral />} />
           </Route>
 
           <Route element={<KYCRoute />}>

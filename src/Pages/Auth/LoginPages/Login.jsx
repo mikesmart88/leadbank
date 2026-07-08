@@ -34,12 +34,18 @@ export default function Login() {
 
         try{
             const response = await login(email, password);
+
             if (response?.error) {
                 hideLoader();
                 showAlert({
                 type: "failed",
                 message: response?.error || "Login failed",
             });
+            }
+
+            if(response?.verify) {
+              localStorage.setItem("email", response?.verify)
+              navigate("/security/email/verification/")
             }
              
             if (response?.success) {

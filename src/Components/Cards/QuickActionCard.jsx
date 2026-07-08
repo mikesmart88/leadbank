@@ -12,7 +12,7 @@ import { Link } from "react-router";
 
 export default function QuickActionCard({style, className, iconName, label, to, description, ...props}) {
     return (
-        <Link to={to} style={style} className={`card ${className}`}>
+        <Link to={to} style={style} className={` ${className}`}>
             <span className="quick-action-icon">
                 <Icon name={iconName} />
             </span>

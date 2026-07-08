@@ -16,55 +16,61 @@ export default function PinInfo() {
   const navigate = useNavigate();
   const { showLoader, hideLoader } = useLoader();
   const { showAlert } = useAlert();
-  const { login } = useContext(AuthContext)
+  const { login } = useContext(AuthContext);
 
   const [pin, setPin] = useState("");
 
-  const isValid = (pin.length === 4);
+  const isValid = pin.length === 4;
 
-  const personalData = JSON.parse(
-    localStorage.getItem("personaldata")
-    );
+  const personalData = JSON.parse(localStorage.getItem("personaldata"));
 
- const handlecreateUser = async (e) => {
-    e.preventDefault()
-    showLoader()
-    try{
-        const formData = new FormData();
+  const handlecreateUser = async (e) => {
+    e.preventDefault();
+    showLoader();
+    try {
+      const formData = new FormData();
 
-        formData.append("country", localStorage.getItem("country"));
-        formData.append("first_name", personalData.fname);
-        formData.append("last_name", personalData.lname);
-        formData.append("middleName", personalData.midname);
-        formData.append("gender", personalData.gender);
-        formData.append("phoneNumber", personalData.phone);
-        formData.append("email", personalData.email);
-        formData.append("refCode", personalData.refcode)
-        formData.append("password", localStorage.getItem("password"))
-        formData.append("transactionPin", pin)
+      formData.append("country", localStorage.getItem("country"));
+      formData.append("first_name", personalData.fname);
+      formData.append("last_name", personalData.lname);
+      formData.append("middleName", personalData.midname);
+      formData.append("gender", personalData.gender);
+      formData.append("phoneNumber", personalData.phone);
+      formData.append("email", personalData.email);
+      formData.append("refCode", personalData.refcode);
+      formData.append("password", localStorage.getItem("password"));
+      formData.append("transactionPin", pin);
 
-        const data = await CreateNewuser(formData);
-        console.log(data)
+      const data = await CreateNewuser(formData);
+      console.log(data);
 
-        if (data?.success) {
-            try{
-                const user = await login(personalData.email, localStorage.getItem("password"));
-                if (user?.error){
-                    navigate('/login/')
-                }
-            }catch(err) {
-            hideLoader();
-            const data = err?.response?.data;
-            navigate('/login/')
-            }
+      if (data?.success) {
+        
+          const user = await login(
+            personalData.email,
+            localStorage.getItem("password"),
+          );
+
+          console.log(user)
+
+          if (user?.verify) {
+            localStorage.setItem("email", user?.verify);
+            navigate("/security/email/verification/");
+            return;
+          }
+
+          // if (user?.error) {
+          //   console.log(user?.error)
+          //   navigate("/login/");
+          // }
         hideLoader();
         showAlert({
-            type: "success",
-            message: data?.success || "account created successfully"
-        })
-        localStorage.removeItem("country")
-        localStorage.removeItem("password")
-        localStorage.removeItem("personaldata")
+          type: "success",
+          message: data?.success || "account created successfully",
+        });
+        localStorage.removeItem("country");
+        localStorage.removeItem("password");
+        localStorage.removeItem("personaldata");
       }
     } catch (error) {
       hideLoader();
@@ -75,8 +81,8 @@ export default function PinInfo() {
           error?.message ||
           "Error occurred during user creation",
       });
-    } 
     }
+  };
 
   return (
     <main className="main-form-info">
