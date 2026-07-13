@@ -1,4 +1,4 @@
 export const AuthHeaders = () => ({
   "Content-Type": "application/json",
-  Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+  Authorization: `Token ${localStorage.getItem("access_token")}`,
 });
