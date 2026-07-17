@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
@@ -21,8 +22,13 @@ export default function ToolsCard({
   bgcolor,
   ...props
 }) {
-  return (
-    <div className={`card ${className}`} style={{ background: bgcolor, ...style }} {...props}>
+  const {
+    t
+  } = useTranslation();
+  return <div className={`card ${className}`} style={{
+    background: bgcolor,
+    ...style
+  }} {...props}>
         <div className="text-holder">
           <span className="icon-holder">
             <Icon name={iconName} />
@@ -34,6 +40,5 @@ export default function ToolsCard({
           </CustomButton>
         </div>
         <CustomImage source={imgsrc} altText={`${title} image`} />
-    </div>
-  );
+    </div>;
 }

@@ -1,3 +1,4 @@
+import { useTranslation } from "../../../auto-il8n";
 import { useState, useRef, useEffect } from "react";
 import { useData } from "../../../hooks/UseData";
 import { getFormattedDate } from "../../../helpers/date";
@@ -19,49 +20,45 @@ import Input from "../../../Components/Inputs/Input";
 import { uploadimage } from "../../../services/AuthServices";
 import BackButton from "../../../Components/Buttons/BackButton";
 import { Set2FA } from "../../../services/AuthServices";
-
 export default function Referral() {
-
-    const { showAlert } = useAlert()
-
-    const copyWalletAddress = async (address) => {
+  const {
+    t
+  } = useTranslation();
+  const {
+    showAlert
+  } = useAlert();
+  const copyWalletAddress = async address => {
     try {
       await navigator.clipboard.writeText(address);
       showAlert({
         type: "info",
-        message: "Copied",
+        message: "Copied"
       });
     } catch (error) {
       console.error("Failed to copy address", error);
     }
   };
-
-    const { userdata } = useData()
-
-  return (
-    <main className="dashboard-main-content account-dashboard">
+  const {
+    userdata
+  } = useData();
+  return <main className="dashboard-main-content account-dashboard">
       <h2>
         {" "}
-        <BackButton /> Referral Program
-      </h2>
-      <p>Earn intrest when you refer a friend</p>
+        <BackButton />{t("referral_program")}</h2>
+      <p>{t("earn_intrest_when_you_refer_a_friend")}</p>
       <section className="auth-factor referral-section">
         <div className="referral">
           <div>
-            <h3>Refer a friend and earn $5</h3>
-            <p>
-              Share your referral code and get $5 when whoever you refer signs
-              up and receives over $500 before their foreign account
-            </p>
+            <h3>{t("refer_a_friend_and_earn_5")}</h3>
+            <p>{t("share_your_referral_code_and_get_5_when_whoever_you_refer_signs_up_and_receives_over_500_before_their_foreign_account")}</p>
           </div>
         </div>
         <div className="showLink">
-            <CustomButton onClick={() => copyWalletAddress(userdata?.refCode?.toUpperCase())} >
+            <CustomButton onClick={() => copyWalletAddress(userdata?.refCode?.toUpperCase())}>
             {userdata?.refCode?.toUpperCase()} <Icon name="LuCopy" />
             </CustomButton>
         </div>
         <CustomImage source="https://app.grey.co/assets/moneygun-FKsVebUa.png" />
       </section>
-    </main>
-  );
+    </main>;
 }

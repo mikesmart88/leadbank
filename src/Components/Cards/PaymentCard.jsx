@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
@@ -21,13 +22,13 @@ export default function PaymentCard({
   description,
   ...props
 }) {
-  return (
-    <Link style={style} className={className} to={to} {...props}>
-      <span>Comming soon</span>
+  const {
+    t
+  } = useTranslation();
+  return <Link style={style} className={className} to={to} {...props}>
+      <span>{t("comming_soon")}</span>
       <CustomImage source={imgscr} />
       <h3>{label}</h3>
       <p>{description}</p>
-    </Link>
-  );
+    </Link>;
 }
-

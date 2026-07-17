@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Input from "../Inputs/Input";
 
@@ -18,24 +19,23 @@ export default function FormCheckbox({
   readonly,
   pattern,
   ...props
-
 }) {
-    return (
-        <label htmlFor={name} style={{display: "flex", ...style}} className={className} {...props}>
-            <Input
-                    id={name}
-                    name={name}
-                    type="checkbox"
-                    pattern={pattern}
-                    value={defaultValue}
-                    onChange={onchange}
-                    {...(required ? { required: true } : {})}
-                    {...(readonly ? { readOnly: true } : {})}
-                    style={{accentColor: "#1a202c",}}
-                  />
+  const {
+    t
+  } = useTranslation();
+  return <label htmlFor={name} style={{
+    display: "flex",
+    ...style
+  }} className={className} {...props}>
+            <Input id={name} name={name} type="checkbox" pattern={pattern} value={defaultValue} onChange={onchange} {...required ? {
+      required: true
+    } : {}} {...readonly ? {
+      readOnly: true
+    } : {}} style={{
+      accentColor: "#1a202c"
+    }} />
                   <span>
                     {labelText}
                   </span>
-        </label>
-    )
+        </label>;
 }

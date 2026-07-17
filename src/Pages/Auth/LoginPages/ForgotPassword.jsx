@@ -1,3 +1,4 @@
+import { useTranslation } from "../../../auto-il8n";
 import React, { useEffect, useState } from "react";
 import icon from "../../../assets/images/another-icon.png";
 import CustomImage from "../../../Components/Images/CustomImage";
@@ -11,17 +12,21 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import { forgotPassword } from "../../../services/AuthServices";
-
 export default function ForgotPassword() {
+  const {
+    t
+  } = useTranslation();
   const [email, setEmail] = useState("");
-
-  const { showLoader, hideLoader } = useLoader();
-  const { showAlert } = useAlert();
+  const {
+    showLoader,
+    hideLoader
+  } = useLoader();
+  const {
+    showAlert
+  } = useAlert();
   const navigate = useNavigate();
-
   const isValid = email.trim();
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     showLoader();
     try {
@@ -30,60 +35,36 @@ export default function ForgotPassword() {
         hideLoader();
         showAlert({
           type: "success",
-          message: response?.success || "Password reset link sent successfully",
+          message: response?.success || "Password reset link sent successfully"
         });
       }
     } catch (error) {
       hideLoader();
       showAlert({
         type: "failed",
-        message:
-          error.response?.data?.message ||
-          error.message ||
-          "An error occurred while resetting the password",
+        message: error.response?.data?.message || error.message || "An error occurred while resetting the password"
       });
     }
   };
-
-  return (
-    <>
+  return <>
       <section className="login-section">
         <section className="form-section">
           <h2>
-            <CustomImage source={icon} altText="leadbank icon image" />
-            Leadbank
-          </h2>
-          <form
-            className="login-form"
-            onSubmit={(e) => {
-              isValid && handleSubmit(e);
-            }}
-          >
-            <h3>Reset Password!</h3>
-            <FormInput
-              className="login-form-input"
-              labelText="Email address"
-              required
-              placeholder="Enter your email address"
-              type="email"
-              name="reset-password-email"
-              defaultValue={email}
-              onchange={(e) => setEmail(e.target.value)}
-            />
-            <CustomButton
-              {...(isValid ? {} : { disabled: true })}
-              type="submit"
-            >
-              Send Password reset link
-            </CustomButton>
+            <CustomImage source={icon} altText="leadbank icon image" />{t("leadbank")}</h2>
+          <form className="login-form" onSubmit={e => {
+          isValid && handleSubmit(e);
+        }}>
+            <h3>{t("reset_password")}</h3>
+            <FormInput className="login-form-input" labelText="Email address" required placeholder="Enter your email address" type="email" name="reset-password-email" defaultValue={email} onchange={e => setEmail(e.target.value)} />
+            <CustomButton {...isValid ? {} : {
+            disabled: true
+          }} type="submit">{t("send_password_reset_link")}</CustomButton>
           </form>
           <div className="move-to-create-account">
-            <small>
-              Remembered your password? <Link to="/login/">Sign in</Link>
+            <small>{t("remembered_your_password")}<Link to="/login/">{t("sign_in")}</Link>
             </small>
           </div>
         </section>
       </section>
-    </>
-  );
+    </>;
 }

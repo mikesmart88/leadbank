@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 
 /**
@@ -13,9 +14,10 @@ export default function CustomImage({
   className,
   ...props
 }) {
-  return (
-    <div style={style} className={`img ${className}`} {...props}>
+  const {
+    t
+  } = useTranslation();
+  return <div style={style} className={`img ${className}`} {...props}>
       <img src={source} alt={altText} />
-    </div>
-  );
+    </div>;
 }

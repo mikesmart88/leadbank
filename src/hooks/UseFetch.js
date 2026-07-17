@@ -1,6 +1,6 @@
+import { useTranslation } from "../auto-il8n";
 import { useState, useEffect } from "react";
-
-const UseFetch = (url, key = null, option={}) => {
+const UseFetch = (url, key = null, option = {}) => {
   const [data, setdata] = useState(null) || []; // data state
   const [Loading, setLoading] = useState(true); // loading state
   const [error, seterror] = useState(null); // error state
@@ -14,7 +14,6 @@ const UseFetch = (url, key = null, option={}) => {
         if (!response.ok) {
           throw new Error(`an error has occured: ${response.status}`);
         }
-
         const json = await response.json();
         setdata(json);
       } catch (err) {
@@ -24,11 +23,12 @@ const UseFetch = (url, key = null, option={}) => {
         setLoading(false);
       }
     };
-
     fetchdata();
   }, [url, key]);
-
-  return { data, Loading, error };
+  return {
+    data,
+    Loading,
+    error
+  };
 };
-
 export default UseFetch;

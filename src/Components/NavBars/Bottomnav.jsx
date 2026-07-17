@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import CustomImage from "../Images/CustomImage";
@@ -7,7 +8,6 @@ import { routeConfig } from "../../Routers/routeconfig";
 import { useLocation } from "react-router";
 import CustomNavLinks from "../Links/CustomNavLinks";
 import SideBar from "../SideBars/SideBar";
-
 import icon from '../../assets/images/another-icon.png';
 
 /**
@@ -16,40 +16,30 @@ import icon from '../../assets/images/another-icon.png';
  * @returns
  */
 
-export default function BottomNavBar({style, className, ...props}) {
+export default function BottomNavBar({
+  style,
+  className,
+  ...props
+}) {
+  const {
+    t
+  } = useTranslation();
+  const location = useLocation();
+  const normalizePath = path => path.replace(/\/$/, ""); // remove trailing slash
+  const currentRoute = routeConfig.find(route => normalizePath(location.pathname) === normalizePath(route.path));
 
-    const location = useLocation();
+  // console.log(currentRoute)
 
-    const normalizePath = (path) => path.replace(/\/$/, ""); // remove trailing slash
-      const currentRoute = routeConfig.find(
-        (route) => normalizePath(location.pathname) === normalizePath(route.path),
-      );
-
-
-    // console.log(currentRoute)
-
-    return  (
-        <aside style={style} className={className} {...props}>
+  return <aside style={style} className={className} {...props}>
             <Link to="/dashboard/" className={currentRoute.title == "Dashboard" ? "bottom-active" : ""}>
-            <Icon name="LuLayoutDashboard" />
-            Dashboard
-            </Link>
+            <Icon name="LuLayoutDashboard" />{t("dashboard")}</Link>
             <Link to="/accounts/" className={currentRoute.title == "Accounts" ? "bottom-active" : ""}>
-            <Icon name="LuWallet" />
-            Accounts
-            </Link>
-            <Link to="/card/" className={currentRoute.title == "Cards" ? "bottom-active" : ""} >
-            {currentRoute.title !== "Cards" ? <Icon name="BsCreditCard2Front" /> : <Icon name="BsCreditCard2FrontFill" /> }
-            Cards
-            </Link>
-            <Link to="/transactions/" className={currentRoute.title == "Transactions" ? "bottom-active" : ""} >
-            <Icon  name="LuActivity" />
-            Transactions
-            </Link>
-            <Link to="/more/" className={currentRoute.title == "More" ? "bottom-active" : ""} >
-            <Icon name="LuMenu" />
-            More
-            </Link>
-        </aside>
-    )
+            <Icon name="LuWallet" />{t("accounts")}</Link>
+            <Link to="/card/" className={currentRoute.title == "Cards" ? "bottom-active" : ""}>
+            {currentRoute.title !== "Cards" ? <Icon name="BsCreditCard2Front" /> : <Icon name="BsCreditCard2FrontFill" />}{t("cards")}</Link>
+            <Link to="/transactions/" className={currentRoute.title == "Transactions" ? "bottom-active" : ""}>
+            <Icon name="LuActivity" />{t("transactions")}</Link>
+            <Link to="/more/" className={currentRoute.title == "More" ? "bottom-active" : ""}>
+            <Icon name="LuMenu" />{t("more")}</Link>
+        </aside>;
 }

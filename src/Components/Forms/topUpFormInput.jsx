@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Input from "../Inputs/Input";
 import Select from "../Selects/Select";
@@ -26,29 +27,17 @@ export default function TopUpFormInput({
   balance,
   ...props
 }) {
-  return (
-    <div style={style} className={className} {...props}>
+  const {
+    t
+  } = useTranslation();
+  return <div style={style} className={className} {...props}>
       <label htmlFor={name}>{labelText}</label>
       <div className="input-select-holder">
         <div>
-          <Select
-            placeholder="select country"
-            options={option}
-            value={svalue}
-            className="top-select"
-            onchange={onchangeS}
-          />
-          <small>Bal{balance}</small>
+          <Select placeholder="select country" options={option} value={svalue} className="top-select" onchange={onchangeS} />
+          <small>{t("bal")}{balance}</small>
         </div>
-        <Input
-          type={type}
-          onChange={onchange}
-          placeholder={placeholder}
-          value={defaultValue}
-          name={name}
-          required
-        />
+        <Input type={type} onChange={onchange} placeholder={placeholder} value={defaultValue} name={name} required />
       </div>
-    </div>
-  );
+    </div>;
 }

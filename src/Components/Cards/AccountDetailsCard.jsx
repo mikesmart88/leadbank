@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
@@ -21,45 +22,46 @@ export default function AccountDetilsCard({
   onclose,
   ...props
 }) {
+  const {
+    t
+  } = useTranslation();
   if (!isopen) {
     return null;
   }
-  return (
-    <section className="verification-overlay card-overlay">
+  return <section className="verification-overlay card-overlay">
       <div style={style} className={className} {...props}>
         <CustomButton onClick={onclose} className="close-details">
           <Icon name="IoClose" />
         </CustomButton>
         <span className="detail-card-head">
-          <h2>Account Details</h2>
+          <h2>{t("account_details")}</h2>
         </span>
         <div className="detail-card-body">
           <div className="details-card-row">
-            <small>Bank name</small>
-            <strong>Lead Community Bank</strong>
+            <small>{t("bank_name")}</small>
+            <strong>{t("lead_community_bank")}</strong>
           </div>
           <div className="details-card-row">
-            <small>Accoun name</small>
+            <small>{t("accoun_name")}</small>
             <strong>{name}</strong>
           </div>
           <div className="details-card-row">
-            <small>Account number</small>
+            <small>{t("account_number")}</small>
             <strong>{number}</strong>
           </div>
           <div className="details-card-row">
-            <small>Balance</small>
+            <small>{t("balance")}</small>
             <strong>{balance}</strong>
           </div>
           <div className="details-card-row">
-            <small>Country/region</small>
+            <small>{t("country_region")}</small>
             <strong>{country}</strong>
           </div>
           <div className="details-card-row">
-            <small>Created date</small>
+            <small>{t("created_date")}</small>
             <strong>{date}</strong>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }

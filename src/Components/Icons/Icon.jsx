@@ -1,9 +1,10 @@
+import { useTranslation } from "../../auto-il8n";
 import * as bsicons from "react-icons/bs";
 import * as fcicons from "react-icons/fc";
 import * as giicons from "react-icons/gi";
 import * as ioicons from "react-icons/io5";
 import * as mdicons from "react-icons/md";
-import * as luicons from "react-icons/lu"
+import * as luicons from "react-icons/lu";
 import React from "react";
 
 /**
@@ -12,9 +13,15 @@ import React from "react";
  * @returns 
  */
 
-export default function Icon({ name, style, ...props }) {
+export default function Icon({
+  name,
+  style,
+  ...props
+}) {
+  const {
+    t
+  } = useTranslation();
   let IconComponent = null;
-
   if (name.startsWith("Bs")) {
     IconComponent = bsicons[name];
   } else if (name.startsWith("Fc")) {
@@ -28,10 +35,10 @@ export default function Icon({ name, style, ...props }) {
   } else if (name.startsWith("Lu")) {
     IconComponent = luicons[name];
   }
-
   if (!IconComponent) {
-    return <span>❓</span>; // fallback
+    return <span>{t("")}</span>; // fallback
   }
-
-  return <IconComponent style={{ ...style}} {...props} />;
+  return <IconComponent style={{
+    ...style
+  }} {...props} />;
 }

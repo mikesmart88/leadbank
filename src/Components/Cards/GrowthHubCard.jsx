@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
@@ -19,8 +20,10 @@ export default function GrowthHubLink({
   to,
   ...props
 }) {
-  return (
-    <Link to={to || "/referrals/"} style={style} className={className} {...props}>
+  const {
+    t
+  } = useTranslation();
+  return <Link to={to || "/referrals/"} style={style} className={className} {...props}>
       <span>
         <Icon name={iconName} />
       </span>
@@ -28,6 +31,5 @@ export default function GrowthHubLink({
         <strong>{label}</strong>
         <small>{description}</small>
       </div>
-    </Link>
-  );
+    </Link>;
 }

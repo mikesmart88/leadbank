@@ -1,6 +1,6 @@
+import { useTranslation } from "../auto-il8n";
 import React from "react";
 import { Route, Routes, Navigate } from "react-router";
-
 import HomePage from "../Pages/HomePages/Home";
 import Login from "../Pages/Auth/LoginPages/Login";
 import CountryInfo from "../Pages/Auth/RegistrationPages/CountryInfo";
@@ -10,7 +10,6 @@ import PinInfo from "../Pages/Auth/RegistrationPages/transactionpin";
 import ForgotPassword from "../Pages/Auth/LoginPages/ForgotPassword";
 import ResetPassword from "../Pages/Auth/LoginPages/ResetPassword";
 import ResetPin from "../Pages/(logedin)/MorePages/ResetPin";
-
 import Dashboard from "../Pages/(logedin)/DashBoardPages/Dashboard";
 import Accounts from "../Pages/(logedin)/AccountsPages/Accounts";
 import PersonalDetails from "../Pages/(logedin)/MorePages/profile";
@@ -20,7 +19,6 @@ import PinReset from "../Pages/(logedin)/MorePages/PinReset";
 import ApplyLoans from "../Pages/(logedin)/Loanspages/ApplyLoan";
 import LoanForm from "../Pages/(logedin)/Loanspages/LoanApplication";
 import EmailVerification from "../Pages/Auth/RegistrationPages/Verification";
-
 import GenLayout from "../Components/Layouts/GenLayout";
 import SignupLayout from "../Components/Layouts/SignupLayout";
 import DashboardLayout from "../Components/Layouts/DashboardLayout";
@@ -37,17 +35,15 @@ import WithdrawFunds from "../Pages/(logedin)/withdrawalPages/SendFunds";
 import DepositeFunds from "../Pages/(logedin)/DepositingPages/WallectDeposit";
 import TwoAF from "../Pages/(logedin)/MorePages/TwoAF";
 import Referral from "../Pages/(logedin)/MorePages/Referral";
-
 import ProtectedRoute from "./ProtectedRoute";
 import OnlyGuestRoute from "./OnlyGuestRoute";
 import KYCRoute from "./KYCRoutes";
-
 import ReceiptPreview from "../Components/pdfjsx/TransactionPDF";
-
-
 export default function GeneralRouter() {
-  return (
-    <>
+  const {
+    t
+  } = useTranslation();
+  return <>
       <Routes>
         <Route element={<GenLayout />}>
           <Route path="/" element={<HomePage />} />
@@ -88,10 +84,7 @@ export default function GeneralRouter() {
           </Route>
 
           <Route element={<KYCRoute />}>
-            <Route
-              path="/account/verification/kyc/*"
-              element={<KYCVerification />}
-            />
+            <Route path="/account/verification/kyc/*" element={<KYCVerification />} />
           </Route>
 
           <Route path="/card/top-up/*" element={<CardDeposit />} />
@@ -102,6 +95,5 @@ export default function GeneralRouter() {
         </Route>
         <Route path="/pdf/" element={<ReceiptPreview />} />
       </Routes>
-    </> 
-  );
+    </>;
 }

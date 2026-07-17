@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import CustomImage from "../Images/CustomImage";
@@ -9,10 +10,15 @@ import Icon from "../Icons/Icon";
  * @returns
  */
 
-export default function SideBar({ style, ...props }) {
+export default function SideBar({
+  style,
+  ...props
+}) {
+  const {
+    t
+  } = useTranslation();
   const [showServices, setShowServices] = useState(false);
   const [showResouces, setShowResouces] = useState(false);
-
   const handleBox = () => {
     if (showServices == true) {
       setShowServices(false);
@@ -20,7 +26,6 @@ export default function SideBar({ style, ...props }) {
       setShowServices(true);
     }
   };
-
   const handleResouce = () => {
     if (showResouces == true) {
       setShowResouces(false);
@@ -28,18 +33,11 @@ export default function SideBar({ style, ...props }) {
       setShowResouces(true);
     }
   };
-
-  return (
-    <aside style={style} {...props}>
+  return <aside style={style} {...props}>
       <div className="sidebar-links">
         <span className={`nav-pop-box side-pop-box`}>
-          <small onClick={() => handleBox()}>
-            services{" "}
-            {showServices == true ? (
-              <Icon name="LuChevronUp" />
-            ) : (
-              <Icon name="LuChevronDown" />
-            )}
+          <small onClick={() => handleBox()}>{t("services")}{" "}
+            {showServices == true ? <Icon name="LuChevronUp" /> : <Icon name="LuChevronDown" />}
           </small>
           <div className={`${showServices ? "side-open" : "side-close"}`}>
             <Link>
@@ -48,8 +46,8 @@ export default function SideBar({ style, ...props }) {
                 <Icon name="FcCurrencyExchange" />
               </span>
               <span className="nav-pop-text">
-                <small>Personal Banking</small>{" "}
-                <small>Manage, save and anylize your money</small>
+                <small>{t("personal_banking")}</small>{" "}
+                <small>{t("manage_save_and_anylize_your_money")}</small>
               </span>
             </Link>
             <Link>
@@ -58,8 +56,8 @@ export default function SideBar({ style, ...props }) {
                 <Icon name="FcDepartment" />
               </span>
               <span className="nav-pop-text">
-                <small>Business Banking</small>{" "}
-                <small>Manage your business finances easily</small>
+                <small>{t("business_banking")}</small>{" "}
+                <small>{t("manage_your_business_finances_easily")}</small>
               </span>
             </Link>
             <Link>
@@ -68,8 +66,8 @@ export default function SideBar({ style, ...props }) {
                 <Icon name="FcMoneyTransfer" />
               </span>
               <span className="nav-pop-text">
-                <small>Loans & Credit</small>{" "}
-                <small>Smart lending solutions for modern business needs</small>
+                <small>{t("loans_credit")}</small>{" "}
+                <small>{t("smart_lending_solutions_for_modern_business_needs")}</small>
               </span>
             </Link>
             <Link>
@@ -78,8 +76,8 @@ export default function SideBar({ style, ...props }) {
                 <Icon name="FcSimCardChip" />
               </span>
               <span className="nav-pop-text">
-                <small>Cards</small>{" "}
-                <small>Secure cards for everyday payments everywhere</small>
+                <small>{t("cards")}</small>{" "}
+                <small>{t("secure_cards_for_everyday_payments_everywhere")}</small>
               </span>
             </Link>
             <Link>
@@ -88,38 +86,30 @@ export default function SideBar({ style, ...props }) {
                 <Icon name="FcDonate" />
               </span>
               <span className="nav-pop-text">
-                <small>Grants & Aids</small>{" "}
-                <small>
-                  Helping individuals & business through funding and assistance
-                </small>
+                <small>{t("grants_aids")}</small>{" "}
+                <small>{t("helping_individuals_business_through_funding_and_assistance")}</small>
               </span>
             </Link>
           </div>
         </span>
 
         <span className={`nav-pop-box side-pop-box`}>
-          <small onClick={() => handleResouce()}>
-            Resources{" "}
-            {showResouces == true ? (
-              <Icon name="LuChevronUp" />
-            ) : (
-              <Icon name="LuChevronDown" />
-            )}
+          <small onClick={() => handleResouce()}>{t("resources")}{" "}
+            {showResouces == true ? <Icon name="LuChevronUp" /> : <Icon name="LuChevronDown" />}
           </small>
           <div className={`${showResouces ? "side-open" : "side-close"}`}>
-            <Link>About Us</Link>
-            <Link>FAQs</Link>
-            <Link>Help</Link>
+            <Link>{t("about_us")}</Link>
+            <Link>{t("faqs")}</Link>
+            <Link>{t("help")}</Link>
           </div>
         </span>
 
-        <Link>Blog</Link>
-        <Link>Contact Us</Link>
+        <Link>{t("blog")}</Link>
+        <Link>{t("contact_us")}</Link>
       </div>
       <div className="user-links">
-        <Link to="/login/">Login</Link>
-        <Link to="/signup/country/">Get started for free</Link>
+        <Link to="/login/">{t("login")}</Link>
+        <Link to="/signup/country/">{t("get_started_for_free")}</Link>
       </div>
-    </aside>
-  );
+    </aside>;
 }

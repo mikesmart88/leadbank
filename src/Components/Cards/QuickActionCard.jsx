@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
@@ -10,9 +11,19 @@ import { Link } from "react-router";
  * @returns
  */
 
-export default function QuickActionCard({style, className, iconName, label, to, description, ...props}) {
-    return (
-        <Link to={to} style={style} className={` ${className}`}>
+export default function QuickActionCard({
+  style,
+  className,
+  iconName,
+  label,
+  to,
+  description,
+  ...props
+}) {
+  const {
+    t
+  } = useTranslation();
+  return <Link to={to} style={style} className={` ${className}`}>
             <span className="quick-action-icon">
                 <Icon name={iconName} />
             </span>
@@ -20,6 +31,5 @@ export default function QuickActionCard({style, className, iconName, label, to, 
                 <strong>{label}</strong>
                 <small>{description}</small>
             </div>
-        </Link>
-    )
+        </Link>;
 }

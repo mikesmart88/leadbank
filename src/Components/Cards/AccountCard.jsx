@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
@@ -21,31 +22,26 @@ export default function AccountCard({
   accountNumber,
   ...props
 }) {
-  const maskNumber = (number) => {
+  const {
+    t
+  } = useTranslation();
+  const maskNumber = number => {
     const str = number.toString();
     return "••••" + str.slice(-4);
   };
-
-  return (
-    <div style={style} className={className} {...props}>
+  return <div style={style} className={className} {...props}>
       <span>
-        <ReactCountryFlag
-          style={{
-            width: "100%",
-            height: "auto",
-            objectFit: "cover",
-            minHeight: "30px",
-          }}
-          countryCode={getCountryCode(country)}
-          svg
-        />
+        <ReactCountryFlag style={{
+        width: "100%",
+        height: "auto",
+        objectFit: "cover",
+        minHeight: "30px"
+      }} countryCode={getCountryCode(country)} svg />
       </span>
-      {accountNumber ? (
-        <span className="floating-number">
-          <small>Account Number</small>
+      {accountNumber ? <span className="floating-number">
+          <small>{t("account_number")}</small>
         {maskNumber(accountNumber)}
-      </span>
-      ): null}
+      </span> : null}
       <div className="balance-card-show">
         <small>{currencyName}</small>
         <strong>
@@ -53,6 +49,5 @@ export default function AccountCard({
           {balance.toLocaleString()}
         </strong>
       </div>
-    </div>
-  );
+    </div>;
 }

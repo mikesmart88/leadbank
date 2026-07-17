@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import CustomImage from "../Images/CustomImage";
@@ -15,7 +16,6 @@ import { useLoader } from "../../contexts/LoaderContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import { MediaUrl } from "../../../env.config";
-
 import icon from "../../assets/images/another-icon.png";
 import { IoLogoWhatsapp } from "react-icons/io";
 
@@ -25,28 +25,42 @@ import { IoLogoWhatsapp } from "react-icons/io";
  * @returns
  */
 
-export default function DashboardNavbar({ style, className, ...props }) {
-  const { userdata, supportData } = useData();
-  const { logout } = useContext(AuthContext);
-  const { showLoader } = useLoader();
-  const { showAlert } = useAlert();
+export default function DashboardNavbar({
+  style,
+  className,
+  ...props
+}) {
+  const {
+    t
+  } = useTranslation();
+  const {
+    userdata,
+    supportData
+  } = useData();
+  const {
+    logout
+  } = useContext(AuthContext);
+  const {
+    showLoader
+  } = useLoader();
+  const {
+    showAlert
+  } = useAlert();
   const navigate = useNavigate();
-
   const getInitials = (firstName, lastName) => {
     return `${firstName?.charAt(0) || ""}${lastName?.charAt(0) || ""}`.toUpperCase();
   };
-
   const [visible, setvisible] = useState(false);
-
   const handleLogout = () => {
     showLoader();
     logout();
-    showAlert({ type: "info", message: "Successfully loged out" });
+    showAlert({
+      type: "info",
+      message: "Successfully loged out"
+    });
     navigate("/login/");
   };
-
-  return (
-    <header className={className} style={style} {...props}>
+  return <header className={className} style={style} {...props}>
       <nav>
         <Link className="dlogo">
           <CustomImage source={icon} altText="leadbank icon image" />
@@ -54,39 +68,26 @@ export default function DashboardNavbar({ style, className, ...props }) {
 
         <div className="dashboard-links">
           <Link to={supportData?.support.chatLink} className="normal-link setting">
-            <IoLogoWhatsapp size={18} style={{ fill: "#06a742" }} />
+            <IoLogoWhatsapp size={18} style={{
+            fill: "#06a742"
+          }} />
           </Link>
           <Link to="/more/" className="normal-link whatsapp-chat">
             <Icon name="LuSettings" />
           </Link>
           <div className="profile-menu-dropdown">
-            {userdata?.avatarUrl ? (
-              <CustomImage source={`${MediaUrl}${userdata?.avatarUrl}`} />
-            ) : userdata?.first_name && userdata?.last_name !== "" ? (
-              <span className="profile-text">
+            {userdata?.avatarUrl ? <CustomImage source={`${MediaUrl}${userdata?.avatarUrl}`} /> : userdata?.first_name && userdata?.last_name !== "" ? <span className="profile-text">
                 {getInitials(userdata?.first_name, userdata?.last_name)}
-              </span>
-            ) : (
-              <CustomImage source="https://i.near.social/magic/large/https://near.social/magic/img/account/null" />
-            )}
-            {visible ? (
-              <Icon name="IoClose" onClick={() => setvisible(false)} />
-            ) : (
-              <Icon name="LuMenu" onClick={() => setvisible(true)} />
-            )}
+              </span> : <CustomImage source="https://i.near.social/magic/large/https://near.social/magic/img/account/null" />}
+            {visible ? <Icon name="IoClose" onClick={() => setvisible(false)} /> : <Icon name="LuMenu" onClick={() => setvisible(true)} />}
 
-            {visible && (
-              <aside className="menu-dropdown-box">
-                <div className="profile-card" onClick={() => {navigate("/dashboard/"), setvisible(false)}}>
-                  {userdata?.avatarUrl ? (
-                    <CustomImage source={`${MediaUrl}${userdata?.avatarUrl}`} />
-                  ) : userdata?.first_name && userdata?.last_name !== "" ? (
-                    <span className="profile-text">
+            {visible && <aside className="menu-dropdown-box">
+                <div className="profile-card" onClick={() => {
+              navigate("/dashboard/"), setvisible(false);
+            }}>
+                  {userdata?.avatarUrl ? <CustomImage source={`${MediaUrl}${userdata?.avatarUrl}`} /> : userdata?.first_name && userdata?.last_name !== "" ? <span className="profile-text">
                       {getInitials(userdata?.first_name, userdata?.last_name)}
-                    </span>
-                  ) : (
-                    <CustomImage source="https://i.near.social/magic/large/https://near.social/magic/img/account/null" />
-                  )}
+                    </span> : <CustomImage source="https://i.near.social/magic/large/https://near.social/magic/img/account/null" />}
 
                   <span className="profile-popup">
                     <strong>
@@ -98,46 +99,35 @@ export default function DashboardNavbar({ style, className, ...props }) {
                 </div>
                 <div className="drop-down-links-holder">
                   <Link onClick={() => setvisible(false)} to="/accounts/" className="dropdown-link">
-                    <Icon name="LuWallet" />
-                    My Accounts
-                  </Link>
+                    <Icon name="LuWallet" />{t("my_accounts")}</Link>
                   <Link to="/payments/" onClick={() => setvisible(false)} className="dropdown-link">
-                    <Icon name="LuBanknote" /> Payments
-                  </Link>
+                    <Icon name="LuBanknote" />{t("payments")}</Link>
                   <Link to="/transactions/" onClick={() => setvisible(false)} className="dropdown-link">
-                    <Icon name="LuActivity" /> Transactions
-                  </Link>
+                    <Icon name="LuActivity" />{t("transactions")}</Link>
                   <Link to="/card/" onClick={() => setvisible(false)} className="dropdown-link">
-                    <Icon name="LuCreditCard" /> Cards
-                  </Link>
+                    <Icon name="LuCreditCard" />{t("cards")}</Link>
                   <Link to="/account/statement/" onClick={() => setvisible(false)} className="dropdown-link">
-                    <Icon name="LuFileText" /> Reports & Statements
-                  </Link>
+                    <Icon name="LuFileText" />{t("reports_statements")}</Link>
                   <Link onClick={() => setvisible(false)} className="dropdown-link">
-                    <Icon name="LuUsers" /> Community
-                  </Link>
-                  <span
-                    style={{ marginBottom: "0px" }}
-                    className="dropdown-link"
-                    onClick={() => {
-                      handleLogout();
-                    }}
-                  >
-                    <Icon name="LuLogOut" style={{ marginBottom: "0px" }} />{" "}
-                    Sign out
-                  </span>
+                    <Icon name="LuUsers" />{t("community")}</Link>
+                  <span style={{
+                marginBottom: "0px"
+              }} className="dropdown-link" onClick={() => {
+                handleLogout();
+              }}>
+                    <Icon name="LuLogOut" style={{
+                  marginBottom: "0px"
+                }} />{" "}{t("sign_out")}</span>
                 </div>
-              </aside>
-            )}
+              </aside>}
           </div>
           <div className="referal-count-show">
             <span className="star">
               <Icon name="LuStar" />
             </span>
-            <span>$ 0</span>
+            <span>{t("0")}</span>
           </div>
         </div>
       </nav>
-    </header>
-  );
+    </header>;
 }

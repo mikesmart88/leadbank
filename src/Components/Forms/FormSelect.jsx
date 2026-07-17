@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Select from "../Selects/Select";
 
@@ -19,21 +20,16 @@ export default function FormSelect({
   required,
   options,
   ...props
-
 }) {
-  return (
-    <div style={style} className={className} {...props}>
+  const {
+    t
+  } = useTranslation();
+  return <div style={style} className={className} {...props}>
       <label htmlFor={name}>{labelText}</label>
-      <Select
-        id={name}
-        name={name}
-        value={defaultValue}
-        onchange={onchange}
-        placeholder={placeholder}
-        {...(disabled ? { disabled: true } : {})}
-        {...(required ? { required: true } : {})}
-        options={options}
-      />
-    </div>
-  );
+      <Select id={name} name={name} value={defaultValue} onchange={onchange} placeholder={placeholder} {...disabled ? {
+      disabled: true
+    } : {}} {...required ? {
+      required: true
+    } : {}} options={options} />
+    </div>;
 }

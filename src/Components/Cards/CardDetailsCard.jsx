@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React from "react";
 import Icon from "../Icons/Icon";
 import CustomButton from "../Buttons/CustomButtons";
@@ -22,45 +23,46 @@ export default function CardDetailsCard({
   onclose,
   ...props
 }) {
+  const {
+    t
+  } = useTranslation();
   if (!isopen) {
     return null;
   }
-  return (
-    <section className="verification-overlay card-overlay">
+  return <section className="verification-overlay card-overlay">
       <div style={style} className={className} {...props}>
         <CustomButton onClick={onclose} className="close-details">
           <Icon name="IoClose" />
         </CustomButton>
         <span className="detail-card-head">
-          <h2>Card Details</h2>
+          <h2>{t("card_details")}</h2>
         </span>
         <div className="detail-card-body">
           <div className="details-card-row">
-            <small>Card name</small>
+            <small>{t("card_name")}</small>
             <strong>{name}</strong>
           </div>
           <div className="details-card-row">
-            <small>Card number</small>
+            <small>{t("card_number")}</small>
             <strong>{number}</strong>
           </div>
           <div className="details-card-row">
-            <small>cvv</small>
+            <small>{t("cvv")}</small>
             <strong>{cvv}</strong>
           </div>
           <div className="details-card-row">
-            <small>Expiry date</small>
+            <small>{t("expiry_date")}</small>
             <strong>{expiry}</strong>
           </div>
           <div className="details-card-row">
-            <small>Billing address</small>
+            <small>{t("billing_address")}</small>
             <strong>{billing}</strong>
           </div>
           <div className="details-card-row">
-            <small>Zip code</small>
+            <small>{t("zip_code")}</small>
             <strong>{zipcode}</strong>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }

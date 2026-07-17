@@ -1,3 +1,4 @@
+import { useTranslation } from "../../../auto-il8n";
 import { useEffect, useState } from "react";
 import { useData } from "../../../hooks/UseData";
 import { getFormattedDate } from "../../../helpers/date";
@@ -23,127 +24,92 @@ import ReactCountryFlag from "react-country-flag";
 import VerificationReviewModal from "../../../Components/Cards/OnReviewCard";
 import currencies from "../../../assets/currencies.json";
 import { createAccount } from "../../../services/AccountServices";
-
 export default function CreateAccount() {
+  const {
+    t
+  } = useTranslation();
   const [step, setStep] = useState(1);
   const totalStep = 1;
   const navigate = useNavigate();
-  const { userdata, useraccount } = useData();
+  const {
+    userdata,
+    useraccount
+  } = useData();
   const location = useLocation();
-  const { showLoader, hideLoader } = useLoader();
-  const { showAlert } = useAlert();
-
+  const {
+    showLoader,
+    hideLoader
+  } = useLoader();
+  const {
+    showAlert
+  } = useAlert();
   const [currencyName, setCurrencyName] = useState("");
   const [password, setPassword] = useState("");
   const [country, setCountry] = useState("");
   const [sign, setSign] = useState("");
-
-  const is_valid =
-    currencyName.trim() && password.trim() && country.trim() && sign.trim;
+  const is_valid = currencyName.trim() && password.trim() && country.trim() && sign.trim;
 
   //   console.log(currencies)
 
-  const option = currencies.map((currency) => ({
+  const option = currencies.map(currency => ({
     display: currency.display,
     value: currency.value,
-    sign: currency.sign,
+    sign: currency.sign
   }));
-
-  const handleCurrencyChange = (value) => {
-  const selected = currencies.find((c) => c.value === value);
-
-  setCurrencyName(selected?.value);
-  setCountry(selected?.country); 
-  setSign(selected?.sign)
-};
-
-
-const handleCreateAccount = async (e) => {
+  const handleCurrencyChange = value => {
+    const selected = currencies.find(c => c.value === value);
+    setCurrencyName(selected?.value);
+    setCountry(selected?.country);
+    setSign(selected?.sign);
+  };
+  const handleCreateAccount = async e => {
     e.preventDefault();
-    showLoader()
-    try{
-        const formData = new FormData();
-
-        formData.append("country", country);
-        formData.append("currencyName", currencyName);
-        formData.append("currencycode", sign);
-        formData.append("password", password);
-
-        const data = await createAccount(formData);
-        console.log(data);
-
-    if (data?.success) {
+    showLoader();
+    try {
+      const formData = new FormData();
+      formData.append("country", country);
+      formData.append("currencyName", currencyName);
+      formData.append("currencycode", sign);
+      formData.append("password", password);
+      const data = await createAccount(formData);
+      console.log(data);
+      if (data?.success) {
         hideLoader();
         showAlert({
-            type: "success",
-            message: data?.success || "Account have been created successfully"
-        })
-        navigate('/accounts/')
+          type: "success",
+          message: data?.success || "Account have been created successfully"
+        });
+        navigate('/accounts/');
       }
     } catch (error) {
       hideLoader();
       showAlert({
         type: "failed",
-        message:
-          error?.response?.data?.message ||
-          error?.message ||
-          "Error occurred during verification",
+        message: error?.response?.data?.message || error?.message || "Error occurred during verification"
       });
     }
-}
-
-  return (
-    <>
-      <div className="progres-loader" style={{ width: `${step * 100}%` }}></div>
-      <Vpageheader
-        className="vpage-header"
-        currentv={step}
-        total={totalStep}
-        text="Create Account"
-      />
+  };
+  return <>
+      <div className="progres-loader" style={{
+      width: `${step * 100}%`
+    }}></div>
+      <Vpageheader className="vpage-header" currentv={step} total={totalStep} text="Create Account" />
       <main className="kyc-form-holder">
-        {step == 1 ? (
-          <>
-            <h2>Create New Account</h2>
+        {step == 1 ? <>
+            <h2>{t("create_new_account")}</h2>
             <form onSubmit={is_valid && handleCreateAccount} className="kyc-form">
-              <FormSelect
-                className="login-form-input"
-                placeholder="Select currency"
-                options={option}
-                labelText="Select currency"
-                onchange={(e) => handleCurrencyChange(e.target.value)}
-                defaultValue={currencyName}
-              />
+              <FormSelect className="login-form-input" placeholder="Select currency" options={option} labelText="Select currency" onchange={e => handleCurrencyChange(e.target.value)} defaultValue={currencyName} />
               <div className="note-info">
                 <h4>
-                  <Icon name="LuInfo" /> Kindly Note
-                </h4>
-                <p>
-                  50 currency have been chosen for this selection if your chioce
-                  is not avalaible in the selection, Kindly contact support,
-                  Thank you.
-                </p>
+                  <Icon name="LuInfo" />{t("kindly_note")}</h4>
+                <p>{t("50_currency_have_been_chosen_for_this_selection_if_your_chioce_is_not_avalaible_in_the_selection_kindly_contact_support_thank_you")}</p>
               </div>
-              <FormInput
-                labelText="Password"
-                placeholder="Enter login password to confirm"
-                className="login-form-input"
-                type="password"
-                required
-                onchange={(e) =>setPassword(e.target.value)}
-              />
-              <CustomButton
-                {...(is_valid ? {} : { disabled: true })}
-                type="submit"
-              >
-                Create Account
-              </CustomButton>
+              <FormInput labelText="Password" placeholder="Enter login password to confirm" className="login-form-input" type="password" required onchange={e => setPassword(e.target.value)} />
+              <CustomButton {...is_valid ? {} : {
+            disabled: true
+          }} type="submit">{t("create_account")}</CustomButton>
             </form>
-          </>
-        ) : (
-          <></>
-        )}
+          </> : <></>}
       </main>
-    </>
-  );
+    </>;
 }

@@ -1,25 +1,68 @@
-export const routeConfig = [
-    { path: "/", title: "Home" },
-    {path: "/login/", title: "Login"},
-
-    {path: "/dashboard/", title: 'Dashboard'},
-    {path: "/accounts/", title: "Accounts"},
-    {path: "/card/", title: "Cards"},
-    {path: "/card/statement/", title: "Cards"},
-    {path: "/transactions/", title: "Transactions"},
-    {path: "/more/", title: "More"},
-    {path: "/payments/", title: "Dashboard"},
-    {path: "/account/verification/kyc/*", title: "account verification"},
-    {path: "/account/statement/", title: "Accounts"},
-    {path: "/account/create/new/", title: "Accounts"},
-    {path: "/dashboard/funds/send/*", title: "Dashboard"},
-    {path: "/dashboard/funds/top_up/*", title: "Dashbaord" },
-    {path: "/profile/", title: "More"},
-    {path: "/account/limits/", title: "More"},
-    {path: "/settings/password/change/", title: "More"},
-    {path: "/settings/pin/change/", title: "More"},
-    {path: "/loans/apply/", title: "Loans"},
-    {path: "/loans/application/", title: "Loans"},
-    {path: "/settings/2fa/", title: "More"},
-    {path: "/referrals/", title: "More"},
-]
+import { useTranslation } from "../auto-il8n";
+export const routeConfig = [{
+  path: "/",
+  title: "Home"
+}, {
+  path: "/login/",
+  title: "Login"
+}, {
+  path: "/dashboard/",
+  title: 'Dashboard'
+}, {
+  path: "/accounts/",
+  title: "Accounts"
+}, {
+  path: "/card/",
+  title: "Cards"
+}, {
+  path: "/card/statement/",
+  title: "Cards"
+}, {
+  path: "/transactions/",
+  title: "Transactions"
+}, {
+  path: "/more/",
+  title: "More"
+}, {
+  path: "/payments/",
+  title: "Dashboard"
+}, {
+  path: "/account/verification/kyc/*",
+  title: "account verification"
+}, {
+  path: "/account/statement/",
+  title: "Accounts"
+}, {
+  path: "/account/create/new/",
+  title: "Accounts"
+}, {
+  path: "/dashboard/funds/send/*",
+  title: "Dashboard"
+}, {
+  path: "/dashboard/funds/top_up/*",
+  title: "Dashbaord"
+}, {
+  path: "/profile/",
+  title: "More"
+}, {
+  path: "/account/limits/",
+  title: "More"
+}, {
+  path: "/settings/password/change/",
+  title: "More"
+}, {
+  path: "/settings/pin/change/",
+  title: "More"
+}, {
+  path: "/loans/apply/",
+  title: "Loans"
+}, {
+  path: "/loans/application/",
+  title: "Loans"
+}, {
+  path: "/settings/2fa/",
+  title: "More"
+}, {
+  path: "/referrals/",
+  title: "More"
+}];

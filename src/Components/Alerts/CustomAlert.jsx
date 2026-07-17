@@ -1,6 +1,6 @@
+import { useTranslation } from "../../auto-il8n";
 import Icon from "../Icons/Icon";
 import { useEffect, useState } from "react";
-
 export default function CustomAlert({
   type,
   message,
@@ -8,9 +8,11 @@ export default function CustomAlert({
   duration = 5000,
   ...props
 }) {
+  const {
+    t
+  } = useTranslation();
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
-
   useEffect(() => {
     // allow first paint, then animate
     const t = setTimeout(() => setOpen(true), 10);
@@ -30,17 +32,9 @@ export default function CustomAlert({
       clearTimeout(removeTimer);
     };
   }, [duration, onClose]);
-
-  return (
-    <div className={`Alert-box`}>
-      <span
-        className={`main-box ${type} ${open ? "open" : ""} ${
-          closing ? "closing" : ""
-        }`}
-        {...props}
-      >
+  return <div className={`Alert-box`}>
+      <span className={`main-box ${type} ${open ? "open" : ""} ${closing ? "closing" : ""}`} {...props}>
         <Icon name="LuInfo" /> <p>{message}</p>
       </span>
-    </div>
-  );
+    </div>;
 }

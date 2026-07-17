@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import CustomImage from "../Images/CustomImage";
@@ -7,7 +8,6 @@ import { routeConfig } from "../../Routers/routeconfig";
 import { useLocation } from "react-router";
 import CustomNavLinks from "../Links/CustomNavLinks";
 import SideBar from "../SideBars/SideBar";
-
 import icon from '../../assets/images/another-icon.png';
 
 /**
@@ -16,41 +16,34 @@ import icon from '../../assets/images/another-icon.png';
  * @returns
  */
 
-export default function NavBar({ style, ...props }) {
+export default function NavBar({
+  style,
+  ...props
+}) {
+  const {
+    t
+  } = useTranslation();
   const location = useLocation();
-
   const [sidebar, setSideBar] = useState(false);
-
   const handleSideBar = () => {
     if (sidebar == true) {
-      setSideBar(false)
+      setSideBar(false);
+    } else {
+      setSideBar(true);
     }
-    else{
-      setSideBar(true)
-    }
-  }
-
-  const normalizePath = (path) => path.replace(/\/$/, ""); // remove trailing slash
-  const currentRoute = routeConfig.find(
-    (route) => normalizePath(location.pathname) === normalizePath(route.path),
-  );
-
-  return (
-    <header style={style} {...props}>
+  };
+  const normalizePath = path => path.replace(/\/$/, ""); // remove trailing slash
+  const currentRoute = routeConfig.find(route => normalizePath(location.pathname) === normalizePath(route.path));
+  return <header style={style} {...props}>
       <nav>
         <div className="nav-link-holder">
           <Link className="logo">
-            <CustomImage
-              source={icon}
-              altText="lead bank logo"
-              className="icon"
-            />
-            <small>Leadbank</small>
+            <CustomImage source={icon} altText="lead bank logo" className="icon" />
+            <small>{t("leadbank")}</small>
           </Link>
           <div className="nav-links">
             <span className="nav-pop-box">
-              <small>
-                services <Icon name="LuChevronDown" />
+              <small>{t("services")}<Icon name="LuChevronDown" />
               </small>
               <div>
                 <Link>
@@ -59,8 +52,8 @@ export default function NavBar({ style, ...props }) {
                     <Icon name="FcCurrencyExchange" />
                   </span>
                   <span className="nav-pop-text">
-                    <small>Personal Banking</small>{" "}
-                    <small>Manage, save and anylize your money</small>
+                    <small>{t("personal_banking")}</small>{" "}
+                    <small>{t("manage_save_and_anylize_your_money")}</small>
                   </span>
                 </Link>
                 <Link>
@@ -69,8 +62,8 @@ export default function NavBar({ style, ...props }) {
                     <Icon name="FcDepartment" />
                   </span>
                   <span className="nav-pop-text">
-                    <small>Business Banking</small>{" "}
-                    <small>Manage your business finances easily</small>
+                    <small>{t("business_banking")}</small>{" "}
+                    <small>{t("manage_your_business_finances_easily")}</small>
                   </span>
                 </Link>
                 <Link>
@@ -79,8 +72,8 @@ export default function NavBar({ style, ...props }) {
                     <Icon name="FcMoneyTransfer" />
                   </span>
                   <span className="nav-pop-text">
-                    <small>Loans & Credit</small>{" "}
-                    <small>Smart lending solutions for modern business needs</small>
+                    <small>{t("loans_credit")}</small>{" "}
+                    <small>{t("smart_lending_solutions_for_modern_business_needs")}</small>
                   </span>
                 </Link>
                 <Link>
@@ -89,8 +82,8 @@ export default function NavBar({ style, ...props }) {
                     <Icon name="FcSimCardChip" />
                   </span>
                   <span className="nav-pop-text">
-                    <small>Cards</small>{" "}
-                    <small>Secure cards for everyday payments everywhere</small>
+                    <small>{t("cards")}</small>{" "}
+                    <small>{t("secure_cards_for_everyday_payments_everywhere")}</small>
                   </span>
                 </Link>
                 <Link>
@@ -99,37 +92,35 @@ export default function NavBar({ style, ...props }) {
                     <Icon name="FcDonate" />
                   </span>
                   <span className="nav-pop-text">
-                    <small>Grants & Aids</small>{" "}
-                    <small>Helping individuals & business through funding and assistance</small>
+                    <small>{t("grants_aids")}</small>{" "}
+                    <small>{t("helping_individuals_business_through_funding_and_assistance")}</small>
                   </span>
                 </Link>
               </div>
             </span>
 
             <span className="nav-pop-box">
-              <small>
-                Resources <Icon name="LuChevronDown" />
+              <small>{t("resources")}<Icon name="LuChevronDown" />
               </small>
               <div>
-                <Link>About Us</Link>
-                <Link>FAQs</Link>
-                <Link>Help</Link>
+                <Link>{t("about_us")}</Link>
+                <Link>{t("faqs")}</Link>
+                <Link>{t("help")}</Link>
               </div>
             </span>
 
-            <Link>Blog</Link>
-            <Link>Contact Us</Link>
+            <Link>{t("blog")}</Link>
+            <Link>{t("contact_us")}</Link>
           </div>
         </div>
         <div className="user-links">
-          <Link to="/login/">Login</Link>
-          <Link to="/signup/country/">Get started for free</Link>
+          <Link to="/login/">{t("login")}</Link>
+          <Link to="/signup/country/">{t("get_started_for_free")}</Link>
         </div>
-        <CustomButton className="sidebar-menu" onClick={() => handleSideBar()} >
+        <CustomButton className="sidebar-menu" onClick={() => handleSideBar()}>
           {sidebar == true ? <Icon name="IoClose" /> : <Icon name="LuMenu" />}
         </CustomButton>
       </nav>
       <SideBar className={`sidebar ${sidebar == true ? "sidebar-open" : ""}`} />
-    </header>
-  );
+    </header>;
 }

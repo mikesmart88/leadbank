@@ -1,3 +1,4 @@
+import { useTranslation } from "../../auto-il8n";
 import React, { useState } from "react";
 import { Link } from "react-router";
 import CustomImage from "../Images/CustomImage";
@@ -7,7 +8,6 @@ import { routeConfig } from "../../Routers/routeconfig";
 import { useLocation, useNavigate } from "react-router";
 import CustomNavLinks from "../Links/CustomNavLinks";
 import SideBar from "../SideBars/SideBar";
-
 import icon from "../../assets/images/another-icon.png";
 
 /**
@@ -24,29 +24,24 @@ export default function Vpageheader({
   className,
   ...props
 }) {
-
-    const navigate = useNavigate()
-
-  return (
-    <header style={style} className={className} {...props}>
+  const {
+    t
+  } = useTranslation();
+  const navigate = useNavigate();
+  return <header style={style} className={className} {...props}>
       <div>
         <span className="goback" onClick={() => navigate(-1)}>
           <Icon name="LuArrowLeft" />
         </span>
 
         <span className="vlogo">
-          <CustomImage source={icon} /> Leadbank
-        </span>
+          <CustomImage source={icon} />{t("leadbank")}</span>
       </div>
 
-     {total && currentv && (
-       <div className="kyc-info">
-        <small>
-          Step {currentv} / {total}
+     {total && currentv && <div className="kyc-info">
+        <small>{t("step")}{currentv}{t("")}{total}
         </small>
         <strong>{text || "Complete your KYC"}</strong>
-      </div>
-     )}
-    </header>
-  );
+      </div>}
+    </header>;
 }
