@@ -11,6 +11,7 @@ const languages = {
     nl: () => import("../../languages/nl.json"),
     pt: () => import("../../languages/pt.json"),
     ru: () => import("../../languages/ru.json"),
+    tr: () => import("../../languages/tr.json"),
     "zh-CN": () => import("../../languages/zh-CN.json"),
     "zh-TW": () => import("../../languages/zh-TW.json")
 

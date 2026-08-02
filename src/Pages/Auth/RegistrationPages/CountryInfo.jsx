@@ -44,7 +44,7 @@ export default function CountryInfo() {
           <div className="note-info">
             <h4>
               <Icon name="LuInfo" />{t("kindly_note")}</h4>
-            <p>{t("the_documents_you_can_use_for_verification_depend_only_on_your_selected_country_of_residence_please_double_check_your_choice")}</p>
+            <p>{t("the_documents_you_can_use_for_verification_depend_only_on_your_selected_country_of_residence_please_doublecheck_your_choice")}</p>
           </div>
           <CustomButton {...isValid ? {} : {
           disabled: true
