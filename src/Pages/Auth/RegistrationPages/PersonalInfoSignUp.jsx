@@ -30,7 +30,7 @@ export default function PersoanlInfo() {
       midname: middleName,
       gender: gender,
       phone: phone,
-      email: email,
+      email: email.toLowerCase(),
       refcode: refCode,
       argreement: argreement
     }));

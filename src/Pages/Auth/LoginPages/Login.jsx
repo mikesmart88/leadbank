@@ -40,7 +40,7 @@ export default function Login() {
     setAlert('');
     showLoader();
     try {
-      const response = await login(email, password);
+      const response = await login(email, password.toLowerCase());
       if (response?.error) {
         hideLoader();
         showAlert({
