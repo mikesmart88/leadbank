@@ -62,14 +62,20 @@ export default function WithdrawFunds() {
     setStep(currets - 1);
     window.history.replaceState({}, "", `${location.pathname}${currets - 1}`);
   };
-  const aOption = useraccount?.accounts.map(account => ({
-    display: <>
+
+  const aOption = useraccount?.accounts
+  ?.filter(account => account.is_active === true)
+  .map(account => ({
+    display: (
+      <>
         <ReactCountryFlag countryCode={getCountryCode(account.country)} svg />{" "}
-        {` ${account.country} (${account.currencyName})`}
-      </>,
+        {`${account.country} (${account.currencyName})`}
+      </>
+    ),
     value: `${account.currencycode} ${account.currencyName}`,
     country: account.country
   }));
+
   const handleVerification = async (e, cstep) => {
     e.preventDefault();
     console.log("submitted");

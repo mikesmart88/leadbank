@@ -12,22 +12,18 @@ import AccountCard from "../../../Components/Cards/AccountCard";
 import CustomImage from "../../../Components/Images/CustomImage";
 import AccountDetilsCard from "../../../Components/Cards/AccountDetailsCard";
 import stacked_icon from "../../../assets/images/staked-c.png";
+import { useAlert } from "../../../contexts/AlertContext";
 export default function Accounts() {
-  const {
-    t
-  } = useTranslation();
+  const { t } = useTranslation();
   const [accountshow, setAccountShow] = useState("accounts");
   const [transactionType, setTransactionType] = useState("all");
   const [accountMert, setAccountMert] = useState({});
-  const {
-    useraccount,
-    transactions,
-    userdata
-  } = useData();
+  const { useraccount, transactions, userdata } = useData();
   const [currentTransaction, setCurrentTransaction] = useState();
   const [showdetails, setShowDetails] = useState(false);
   const naviate = useNavigate();
   const [closeClass, setcloseClass] = useState(false);
+  const { showAlert } = useAlert()
   const handleclose = () => {
     setcloseClass(true);
     setTimeout(() => {
@@ -39,58 +35,161 @@ export default function Accounts() {
       setCurrentTransaction(transactions);
     }
   }, [transactions]);
-  const handleAccountMert = (country, currency_name, currency_icon, balance, account_number, date) => {
+  const handleAccountMert = (
+    country,
+    currency_name,
+    currency_icon,
+    balance,
+    account_number,
+    date,
+    status
+  ) => {
     setAccountMert({
       country: country,
       currencyName: currency_name,
       currencyIcon: currency_icon,
       balance: balance,
       accountNumber: account_number,
-      date: date
+      date: date,
+      active: status,
     });
     setAccountShow("single");
   };
-  const handleFilter = status => {
+  const handleFilter = (status) => {
     setTransactionType(status);
     if (status === "all") {
       setCurrentTransaction(transactions);
     } else {
-      const filtered = transactions.filter(tx => tx.status === status);
+      const filtered = transactions.filter((tx) => tx.status === status);
       setCurrentTransaction(filtered);
     }
   };
-  return <main className="dashboard-main-content account-dashboard">
+  return (
+    <main className="dashboard-main-content account-dashboard">
       <h2>{t("accounts")}</h2>
       <p>{t("manage_your_accounts_and_track_earnings")}</p>
       <div className="account-section-nav">
-        <CustomButton className={accountshow == "accounts" ? "button-active" : ""} onClick={() => setAccountShow("accounts")}>{t("accounts")}</CustomButton>
-        <CustomButton className={accountshow == "single" ? "button-active" : ""}>{t("merchant")}</CustomButton>
+        <CustomButton
+          className={accountshow == "accounts" ? "button-active" : ""}
+          onClick={() => setAccountShow("accounts")}
+        >
+          {t("accounts")}
+        </CustomButton>
+        <CustomButton
+          className={accountshow == "single" ? "button-active" : ""}
+        >
+          {t("merchant")}
+        </CustomButton>
       </div>
-      {accountshow == "accounts" ? <section className="user-account-holder">
-          {useraccount?.accounts.map((account, index) => <AccountCard key={index} className="account-card" country={account.country} currencyName={account.currencyName} currencyIcon={account.currencycode} balance={account.balance} onClick={() => handleAccountMert(account.country, account.currencyName, account.currencycode, account.balance, account.accountNumber, new Date(account.created_at).toISOString().split("T")[0])} />)}
-          <div onClick={() => naviate("/account/create/new/")} className="add-account account-card">
+      {accountshow == "accounts" ? (
+        <section className="user-account-holder">
+          {useraccount?.accounts.map((account, index) => (
+            <AccountCard
+              key={index}
+              className="account-card"
+              country={account.country}
+              currencyName={account.currencyName}
+              currencyIcon={account.currencycode}
+              balance={account.balance}
+              active={account.is_active}
+              onClick={() =>
+                account.is_active == true ?
+                handleAccountMert(
+                  account.country,
+                  account.currencyName,
+                  account.currencycode,
+                  account.balance,
+                  account.accountNumber,
+                  new Date(account.created_at).toISOString().split("T")[0],
+                  account.is_active,
+                ) : showAlert({
+                  type: "info",
+                  message: "Account has been disabled"
+                })
+              }
+            />
+          ))}
+          <div
+            onClick={() => naviate("/account/create/new/")}
+            className="add-account account-card"
+          >
             <CustomImage source={stacked_icon} />
             <h3>{t("create_new_account")}</h3>
             {/* <span>
               <Icon name="IoAdd" />
              </span> */}
           </div>
-        </section> : <section className="user-account-holder">
-          {showdetails && <AccountDetilsCard className={`card-details-show ${closeClass && "close-details-show"}`} name={`${userdata?.first_name} ${userdata?.last_name}`} number={accountMert.accountNumber} balance={`${accountMert.currencyIcon}${accountMert.balance}`} date={accountMert.date} country={accountMert.country} isopen={true} onclose={() => handleclose()} />}
-          <AccountCard className="account-card single-account-card" country={accountMert.country} currencyName={accountMert.currencyName} currencyIcon={accountMert.currencyIcon} balance={accountMert.balance} accountNumber={accountMert.accountNumber} onClick={() => setShowDetails(true)} />
-        </section>}
+        </section>
+      ) : (
+        <section className="user-account-holder">
+          {showdetails && (
+            <AccountDetilsCard
+              className={`card-details-show ${closeClass && "close-details-show"}`}
+              name={`${userdata?.first_name} ${userdata?.last_name}`}
+              number={accountMert.accountNumber}
+              balance={`${accountMert.currencyIcon}${accountMert.balance}`}
+              date={accountMert.date}
+              country={accountMert.country}
+              isopen={true}
+              onclose={() => handleclose()}
+            />
+          )}
+          <AccountCard
+            className="account-card single-account-card"
+            country={accountMert.country}
+            currencyName={accountMert.currencyName}
+            currencyIcon={accountMert.currencyIcon}
+            balance={accountMert.balance}
+            accountNumber={accountMert.accountNumber}
+            active={accountMert.active}
+            onClick={() => setShowDetails(true)}
+          />
+        </section>
+      )}
       <section className="transaction-for">
         <div className="account-section-nav">
-          <CustomButton className={transactionType == "all" ? "button-active" : ""} onClick={() => handleFilter("all")}>{t("all")}</CustomButton>
-          <CustomButton className={transactionType == "success" ? "button-active" : ""} onClick={() => handleFilter("success")}>{t("success")}</CustomButton>
-          <CustomButton className={transactionType == "pending" ? "button-active" : ""} onClick={() => handleFilter("pending")}>{t("pending")}</CustomButton>
-          <CustomButton className={transactionType == "failed" ? "button-active" : ""} onClick={() => handleFilter("failed")}>{t("failed")}</CustomButton>
+          <CustomButton
+            className={transactionType == "all" ? "button-active" : ""}
+            onClick={() => handleFilter("all")}
+          >
+            {t("all")}
+          </CustomButton>
+          <CustomButton
+            className={transactionType == "success" ? "button-active" : ""}
+            onClick={() => handleFilter("success")}
+          >
+            {t("success")}
+          </CustomButton>
+          <CustomButton
+            className={transactionType == "pending" ? "button-active" : ""}
+            onClick={() => handleFilter("pending")}
+          >
+            {t("pending")}
+          </CustomButton>
+          <CustomButton
+            className={transactionType == "failed" ? "button-active" : ""}
+            onClick={() => handleFilter("failed")}
+          >
+            {t("failed")}
+          </CustomButton>
         </div>
-        {currentTransaction?.length > 0 ? <TransactionTable className="transaction-table" tableData={currentTransaction} /> : <div className="null-table">
+        {currentTransaction?.length > 0 ? (
+          <TransactionTable
+            className="transaction-table"
+            tableData={currentTransaction}
+          />
+        ) : (
+          <div className="null-table">
             <CustomImage source="https://res.cloudinary.com/mainstack-co/image/upload/images/app//affiliate-program/no_product.svg" />
             <h4>{t("no_transaction_yet")}</h4>
-            <p>{t("there_is_no_transaction_available_for_this_current_filter_yet")}</p>
-          </div>}
+            <p>
+              {t(
+                "there_is_no_transaction_available_for_this_current_filter_yet",
+              )}
+            </p>
+          </div>
+        )}
       </section>
-    </main>;
+    </main>
+  );
 }

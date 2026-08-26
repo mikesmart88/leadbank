@@ -20,6 +20,7 @@ export default function AccountCard({
   currencyIcon,
   balance,
   accountNumber,
+  active,
   ...props
 }) {
   const {
@@ -29,7 +30,7 @@ export default function AccountCard({
     const str = number.toString();
     return "••••" + str.slice(-4);
   };
-  return <div style={style} className={className} {...props}>
+  return <div style={style} className={`${className} ${active == true ? "" : "locked-account"}`} {...props}>
       <span>
         <ReactCountryFlag style={{
         width: "100%",
