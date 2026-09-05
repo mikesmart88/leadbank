@@ -4194,7 +4194,7 @@ body {
 
 #chat-widget-container {
     bottom: 50px !important;
-    height: 600px !important;
+    max-height: 600px !important;
 }
 
 .locked-account{
