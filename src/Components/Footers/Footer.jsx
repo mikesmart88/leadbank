@@ -26,20 +26,8 @@ export default function Footer({
   const addresses = [{
     location: "United State",
     flagcode: "US",
-    address: " Lead Comunity Bank, 609 North board street, middletown, deleware"
-  }, {
-    location: "United Kingdom",
-    flagcode: "GB",
-    address: " 65 Charlotte Road, Hackney, London EC2A 3PE, United Kingdom"
-  }, {
-    location: "Eygpt",
-    flagcode: "EG",
-    address: " Lead Bank, 3 Saraya Street, Zamalek, Cairo Governorate 11211, Egypt"
-  }, {
-    location: "Malaysia",
-    flagcode: "MY",
-    address: " 42 Jalan Sultan Ahmad Shah, 10050 George Town, Penang, Malaysia"
-  }];
+    address: "1801 Main St Kansas City, MO 64108 USA"
+  }, ];
   return <footer style={style} className={className} {...props}>
       <nav className="top-footer-data">
         <div className="linksHolder">
